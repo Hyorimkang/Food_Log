@@ -45,6 +45,7 @@ public class SignUp extends JFrame{
 		userPw();
 		userPwCheck();
 		btnSignup();
+		btnBack();
 		
 		setVisible(true);
 	}
@@ -120,6 +121,14 @@ public class SignUp extends JFrame{
 		btnSignup.setBounds(700, 500, 150, 50);
 		btnSignup.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
 		jp.add(btnSignup);
+		add(jp);
+	}
+	
+	//뒤로가기 버튼
+	public void btnBack() {
+		btnBack = new JButton();
+		btnBack.setBounds(20,20,40,40);
+		jp.add(btnBack);
 		add(jp);
 	}
 
