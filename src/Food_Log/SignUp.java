@@ -1,6 +1,8 @@
 package Food_Log;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -122,6 +124,15 @@ public class SignUp extends JFrame{
 		btnSignup.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
 		jp.add(btnSignup);
 		add(jp);
+		
+		btnSignup.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Login();
+				setVisible(false);
+			}
+		});
 	}
 	
 	//뒤로가기 버튼
@@ -130,6 +141,14 @@ public class SignUp extends JFrame{
 		btnBack.setBounds(20,20,40,40);
 		jp.add(btnBack);
 		add(jp);
+		
+		btnBack.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Main();
+				setVisible(false);
+			}
+		});
 	}
 
 }

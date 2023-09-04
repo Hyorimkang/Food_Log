@@ -1,5 +1,7 @@
 package Food_Log;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -57,7 +59,16 @@ public class Login extends JFrame{
 		btnLogin.setBounds(330, 400, 200, 50);
 		btnLogin.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
 		jp.add(btnLogin);
-		add(jp);	
+		add(jp);
+		
+		btnLogin.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//후기 작성 화면으로 넘어가게하기
+				setVisible(false);
+			}
+		});
 	}
 	
 	//아이디 입력
@@ -94,6 +105,14 @@ public class Login extends JFrame{
 		btnBack.setBounds(20,20,40,40);
 		jp.add(btnBack);
 		add(jp);
+		
+		btnBack.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Main();
+				setVisible(false);
+			}
+		});
 	}
 		
 	
