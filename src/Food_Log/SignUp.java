@@ -1,9 +1,11 @@
 package Food_Log;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,6 +29,8 @@ public class SignUp extends JFrame{
 	private JButton btnSignup;
 	private JButton btnBack;
 	
+	private ImageIcon Back = new ImageIcon("./img/BackLogo.png");
+	
 	public static void main(String[] args) {
 		new SignUp();
 	}
@@ -35,11 +39,13 @@ public class SignUp extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(900,600);
 		setTitle("회원가입");
+		setLocationRelativeTo(null);
 		
 		jp = new JPanel();
 		jp.setSize(900,600);
 		jp.setLayout(null);
 		jp.setVisible(true);
+		jp.setBackground(Color.white);
 		
 		Signup();
 		userName();
@@ -137,7 +143,7 @@ public class SignUp extends JFrame{
 	
 	//뒤로가기 버튼
 	public void btnBack() {
-		btnBack = new JButton();
+		btnBack = new JButton(Back);
 		btnBack.setBounds(20,20,40,40);
 		jp.add(btnBack);
 		add(jp);
