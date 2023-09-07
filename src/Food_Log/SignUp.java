@@ -29,7 +29,7 @@ public class SignUp extends JFrame{
 	private JButton btnSignup;
 	private JButton btnBack;
 	
-	private ImageIcon Back = new ImageIcon("./img/BackLogo.png");
+	private ImageIcon Back = new ImageIcon("./img/Icon_Back.png");
 	
 	public static void main(String[] args) {
 		new SignUp();
@@ -127,6 +127,8 @@ public class SignUp extends JFrame{
 	public void btnSignup() {
 		btnSignup = new JButton("회원가입");
 		btnSignup.setBounds(700, 500, 150, 50);
+		btnSignup.setBackground(Color.white);
+		btnSignup.setFocusPainted(false);
 		btnSignup.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
 		jp.add(btnSignup);
 		add(jp);
@@ -144,7 +146,10 @@ public class SignUp extends JFrame{
 	//뒤로가기 버튼
 	public void btnBack() {
 		btnBack = new JButton(Back);
-		btnBack.setBounds(20,20,40,40);
+		btnBack.setBounds(20,20,70, 70);
+		btnBack.setBackground(Color.white);
+		btnBack.setFocusPainted(false);
+		btnBack.setBorderPainted(false);
 		jp.add(btnBack);
 		add(jp);
 		
