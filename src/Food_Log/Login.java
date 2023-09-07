@@ -25,7 +25,7 @@ public class Login extends JFrame{
 	private JButton btnLogin;
 	private JButton btnBack;
 	
-	private ImageIcon Back = new ImageIcon("./img/BackLogo.png");
+	private ImageIcon Back = new ImageIcon("./img/Icon_Back.png");
 	
 	public static void main(String[] args) {
 		new Login();
@@ -65,6 +65,8 @@ public class Login extends JFrame{
 	public void btnLogin() {
 		btnLogin = new JButton("로그인");
 		btnLogin.setBounds(330, 400, 200, 50);
+		btnLogin.setBackground(Color.white);
+		btnLogin.setFocusPainted(false);
 		btnLogin.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
 		jp.add(btnLogin);
 		add(jp);
@@ -110,7 +112,10 @@ public class Login extends JFrame{
 	//뒤로가기 버튼
 	public void btnBack() {
 		btnBack = new JButton(Back);
-		btnBack.setBounds(20,20,40,40);
+		btnBack.setBounds(20,20,70, 70);
+		btnBack.setBackground(Color.white);
+		btnBack.setFocusPainted(false);
+		btnBack.setBorderPainted(false);
 		jp.add(btnBack);
 		add(jp);
 		
