@@ -7,75 +7,94 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class Select extends JFrame {
-	static JFrame frame = new JFrame();
-	static ImageIcon review = new ImageIcon("./img/Select_Review.png");
-	static ImageIcon list = new ImageIcon("./img/Select_List.png");
-	static ImageIcon search = new ImageIcon("./img/Select_Search.png");
-	static ImageIcon back_btn = new ImageIcon("./img/Icon_Back.png");
-	public static Font select_font = new Font("EF_watermelonSalad", Font.PLAIN, 26);
+	private ImageIcon Back = new ImageIcon("./img/Icon_Back.png");
+	private ImageIcon review = new ImageIcon("./img/Select_Review.png");
+	private ImageIcon list = new ImageIcon("./img/Select_List.png");
+	private ImageIcon search = new ImageIcon("./img/Select_Search.png");
+	private ImageIcon back_btn = new ImageIcon("./img/Icon_Back.png");
+	private Font select_font = new Font("EF_watermelonSalad", Font.PLAIN, 26);
 
 	Select() {
-		frame.setTitle("맛집의 지도");
-		frame.setSize(900, 600);
-		frame.setResizable(false);
-		frame.setLocationRelativeTo(null);
-		frame.setLayout(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setBackground(Color.white);
+		setTitle("맛집의 지도");
+		setSize(900, 600);
+		setResizable(false);
+		setLocationRelativeTo(null);
+		setLayout(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setBackground(Color.white);
 
 		// 제목
 		JLabel title = new JLabel("맛집의 지도");
 		title.setFont(Main.main_font);
 		title.setBounds(200, 80, 550, 120);
 
-		frame.add(title);
+		add(title);
 		WriteReview();
 		ViewList();
 		SearchHashTag();
-		btnBack();
 
-		frame.setVisible(true);
+
+
+		setVisible(true);
 	}
 
 	// 리뷰 작성하기
-	static void WriteReview() {
+	public void WriteReview() {
 
 		// 리뷰 작성하기 버튼
-		JButton review_img = new JButton(review);
-		review_img.setBounds(100, 250, 166, 166);
-		review_img.setBackground(Color.white);
-		review_img.setFocusPainted(false);
-		review_img.setBorderPainted(false);
+		JButton review_btn = new JButton(review);
+		review_btn.setBounds(100, 250, 166, 166);
+		review_btn.setBackground(Color.white);
+		review_btn.setFocusPainted(false);
+		review_btn.setBorderPainted(false);
+
+		// 리뷰 작성 페이지로 이동
+		review_btn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Review();
+				setVisible(false);
+			}
+		});
 
 		// 리뷰 작성하기 라벨
 		JLabel jl_review = new JLabel("리뷰 작성하기");
 		jl_review.setBounds(100, 400, 166, 100);
 		jl_review.setFont(select_font);
 
-		frame.add(review_img);
-		frame.add(jl_review);
+		add(review_btn);
+		add(jl_review);
 	}
 
 	// 리스트 보기
-	static void ViewList() {
+	public void ViewList() {
 		// 리스트 보기 버튼
-		JButton list_img = new JButton(list);
-		list_img.setBounds(365, 250, 166, 166);
-		list_img.setBackground(Color.white);
-		list_img.setFocusPainted(false);
-		list_img.setBorderPainted(false);
+		JButton list_btn = new JButton(list);
+		list_btn.setBounds(365, 250, 166, 166);
+		list_btn.setBackground(Color.white);
+		list_btn.setFocusPainted(false);
+		list_btn.setBorderPainted(false);
+
+		// 리뷰 작성 페이지로 이동
+		list_btn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new List();
+				setVisible(false);
+			}
+		});
 
 		// 리스트 보기 라벨
 		JLabel jl_list = new JLabel("리스트 보기");
 		jl_list.setFont(select_font);
 		jl_list.setBounds(380, 400, 166, 100);
 
-		frame.add(list_img);
-		frame.add(jl_list);
+		add(list_btn);
+		add(jl_list);
 	}
 
 	// 해시태그 검색하기
-	static void SearchHashTag() {
+	public void SearchHashTag() {
 		// 해시태그 검색하기 버튼
 		JButton search_img = new JButton(search);
 		search_img.setBounds(620, 250, 166, 166);
@@ -88,20 +107,21 @@ public class Select extends JFrame {
 		jl_search.setFont(select_font);
 		jl_search.setBounds(600, 400, 230, 100);
 
-		frame.add(search_img);
-		frame.add(jl_search);
+		add(search_img);
+		add(jl_search);
 	}
-	
-	// 뒤로가기 버튼
+
+	//뒤로가기 버튼
 	public void btnBack() {
-		JButton btnBack = new JButton(back_btn);
-		btnBack.setBounds(20,20,70, 70);
+		JButton btnBack = new JButton(Back);
+		btnBack.setBounds(20, 20, 70, 70);
 		btnBack.setBackground(Color.white);
 		btnBack.setFocusPainted(false);
 		btnBack.setBorderPainted(false);
+
+		add(btnBack);
 		
-		frame.add(btnBack);
-		
+		// 메인화면으로 이동
 		btnBack.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
