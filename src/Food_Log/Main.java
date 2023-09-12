@@ -2,6 +2,8 @@ package Food_Log;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -44,6 +46,14 @@ public class Main extends JFrame {
 		login_btn.setFocusPainted(false);
 		login_btn.setBorderPainted(false);
 		
+		login_btn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Login();
+				frame.setVisible(false);
+			}
+		});
+		
 		frame.add(login_btn);
 	}
 	
@@ -55,6 +65,14 @@ public class Main extends JFrame {
 		signup_btn.setBackground(Color.white);
 		signup_btn.setFocusPainted(false);
 		signup_btn.setBorderPainted(false);
+
+		signup_btn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new SignUp();
+				frame.setVisible(false);
+			}
+		});
 		
 		frame.add(signup_btn);		
 	}
