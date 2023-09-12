@@ -1,21 +1,33 @@
 package Food_Log;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 public class List extends JFrame{
+	private static final int VERTICAL_PADDING = 5;
 	private JPanel jp;
 	private JLabel lblList;
+	private DefaultListModel<String> li;
 	private JList<String> list;
+	private JScrollPane scroll;
+	private JButton btnDelete;
+	private JButton btnInsert;
 	private JButton btnBack;
 	
 	private ImageIcon Back = new ImageIcon("./img/BackLogo.png");
@@ -54,30 +66,84 @@ public class List extends JFrame{
 	
 	//리스트 생성
 	public void List() {
-		list = new JList<String>();
+		li = new DefaultListModel<String>();
+		for(int i = 0; i<20; i++) { //table사이즈까지 반복하기
+			li.addElement("테스트");  //쿼리문 작성
+		}
 		
-		String[] review = {"2022-09-09","2022-10-05"};
-		list.setBounds(50, 100, 400, 500);
+		list = new JList<String>(li);
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);  //list 값 중 하나만 선택되도록
+		list.setBounds(140, 120, 600, 400);
+		
+		Border outline = BorderFactory.createLineBorder(Color.black,2); //테두리
+		list.setBorder(outline);
+		
+		list.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 20));
+		JLabel l = new JLabel();
+		
+		//스크롤바 : 나오게하기
+		list.setVisibleRowCount(10);
+		scroll = new JScrollPane(list, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scroll.setPreferredSize(new Dimension(500, 600));
+		
 		
 		jp.add(list);
-		add(jp);	
+		jp.add(scroll);
+		
+		add(jp);
+		
+	}
+	
+	//삭제 버튼
+	public void btnDelete() {
+		btnDelete = new JButton();
+		btnDelete.setBounds(700,250,100,50);
+		jp.add(btnDelete);
+		add(jp);
+		
+		btnDelete.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				new Delete_list();			
+			}
+		});
+	}
+	
+	//삽입 버튼
+	public void btnInsert() {
+		btnInsert = new JButton();
+		btnInsert.setBounds(700,200,100,50);
+		jp.add(btnInsert);
+		add(jp);
+		
+		btnInsert.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//후기추가로 가게 만들기
+				setVisible(false);
+				
+			}
+		});
 	}
 	
 	
 	
 	//뒤로가기 버튼
-		public void btnBack() {
-			btnBack = new JButton(Back);
-			btnBack.setBounds(20,20,40,40);
-			jp.add(btnBack);
-			add(jp);
-			
-			btnBack.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					new Main(); //selectmenu로 가게 만들기
-					setVisible(false);
-				}
-			});
-		}
+	public void btnBack() {
+		btnBack = new JButton(Back);
+		btnBack.setBounds(20,20,40,40);
+		jp.add(btnBack);
+		add(jp);
+		
+		btnBack.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Main(); //selectmenu로 가게 만들기
+				setVisible(false);
+			}
+		});
+	}
 }
