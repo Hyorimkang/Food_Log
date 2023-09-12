@@ -32,15 +32,9 @@ public class Select extends JFrame {
 		WriteReview();
 		ViewList();
 		SearchHashTag();
-<<<<<<< HEAD
 
 		btnBack();
 
-=======
-
-
-
->>>>>>> ba5e4cead3780ee79aa110bf198fa9abeeadcfbe
 		setVisible(true);
 	}
 
@@ -113,7 +107,6 @@ public class Select extends JFrame {
 		jl_search.setFont(select_font);
 		jl_search.setBounds(600, 400, 230, 100);
 
-<<<<<<< HEAD
 		// 해시태그 검색 페이지로 이동
 		search_btn.addActionListener(new ActionListener() {
 			@Override
@@ -124,9 +117,6 @@ public class Select extends JFrame {
 		});
 
 		add(search_btn);
-=======
-		add(search_img);
->>>>>>> ba5e4cead3780ee79aa110bf198fa9abeeadcfbe
 		add(jl_search);
 	}
 
@@ -139,11 +129,6 @@ public class Select extends JFrame {
 		btnBack.setBorderPainted(false);
 
 		add(btnBack);
-<<<<<<< HEAD
-
-=======
-		
->>>>>>> ba5e4cead3780ee79aa110bf198fa9abeeadcfbe
 		// 메인화면으로 이동
 		btnBack.addActionListener(new ActionListener() {
 			@Override
