@@ -32,7 +32,7 @@ public class List extends JFrame{
 	
 	private ImageIcon Back = new ImageIcon("./img/BackLogo.png");
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) { 
 		new List();
 	}
 	
