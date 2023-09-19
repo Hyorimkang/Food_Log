@@ -2,7 +2,8 @@ package Food_Log;
 
 import java.sql.*;
 
-public class Setting {
+// DB 초기 세팅
+public class First_Setting {
 	static void initDB() throws Exception {
 		String url = "jdbc:mysql://127.0.0.1/?serverTimezone=UTC&allowLoadLocalInfile=true";
 		String user = "root";
@@ -12,7 +13,7 @@ public class Setting {
 		
 		System.out.println("연결 성공");
 		
-		stmt.execute("DROP SCHEMA IF EXISTS `맛집의지도`");
+//		stmt.execute("DROP SCHEMA IF EXISTS `맛집의지도`");  // 스키마를 초기화 시키기 위한 코드
 		stmt.execute("CREATE SCHEMA `맛집의지도` DEFAULT CHARACTER SET utf8;");
 		stmt.execute("SET GLOBAL local_infile = 1");
 		
