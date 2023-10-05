@@ -1,7 +1,11 @@
 package Food_Log;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
@@ -13,32 +17,41 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
-public class List {
+public class List extends JFrame{
+	//private static JFrame frame;
+	private static JPanel panel;
+	private static JButton btnDelete;
+	private static JButton btnInsert;
+	private static JButton btnBack;
+	private static ImageIcon Back =new ImageIcon("./img/Icon_Back.png");
+	private static JLabel title;
+	private static JList<String> list;
+	private static JScrollPane scrollPane;
 	
-    public static void main(String[] args) {
-    	 // JFrame 생성
-        JFrame frame = new JFrame("맛집 리스트");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(900,600);
+	public static void main(String[] args) {
+		new List();
+	}
+	
+	public List() {
+		setTitle("맛집 리스트");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(900,600);
+        setLocationRelativeTo(null);
         
         //삭제버튼
-        JButton btnDelete = new JButton("삭제");
-		btnDelete.setBounds(300,500,100,50);
-		frame.add(btnDelete);
-		
-		//삽입버튼
-		JButton btnInsert = new JButton();
-		btnInsert.setBounds(450,500,100,50);
-		frame.add(btnInsert);
+        btnDelete = new JButton("삭제");
+		btnDelete.setBounds(330,500,200,50);
+		btnDelete.setBackground(Color.white);
+		btnDelete.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
+		add(btnDelete);
 		
 		//뒤로가기
-		ImageIcon Back = new ImageIcon("./img/Icon_Back.png");
-		JButton btnBack = new JButton(Back);
+		btnBack = new JButton(Back);
 		btnBack.setBounds(20,20,40,40);
-		frame.add(btnBack);
+		add(btnBack);
 
         // 제목을 담을 JLabel 생성
-        JLabel title = new JLabel("나의 맛집 리스트");
+        title = new JLabel("나의 맛집 리스트");
         title.setHorizontalAlignment(JLabel.CENTER);
         title.setFont(new Font("땅스부대찌개 Bold", Font.PLAIN, 50));
         title.setBounds(250, 30, 500, 100);
@@ -50,13 +63,13 @@ public class List {
         }
 
         // JList 생성
-        JList<String> list = new JList<>(data);
+        list = new JList<>(data);
 
         // JScrollPane 생성 및 JList를 JScrollPane에 추가
-        JScrollPane scrollPane = new JScrollPane(list);
+        scrollPane = new JScrollPane(list);
 
         // JPanel을 생성하여 제목과 JScrollPane를 추가
-        JPanel panel = new JPanel(new BorderLayout());
+        panel = new JPanel(new BorderLayout());
         
         // 좌우로 10px의 공백을 추가
         panel.setBorder(new EmptyBorder(50, 90, 70, 90));
@@ -65,9 +78,34 @@ public class List {
         panel.add(scrollPane, BorderLayout.CENTER);
 
         // JPanel을 프레임에 추가
-        frame.getContentPane().add(panel);
+        getContentPane().add(panel);
 
         // 프레임을 표시
-        frame.setVisible(true);
-    }
+        setVisible(true);
+        
+        btn_set();
+    }//main
+    
+    public void btn_set() {
+    	//삭제
+    	btnDelete.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// 삭제하는 쿼리문
+				
+			}
+		});    	
+    	
+    	//뒤로가기
+    	btnBack.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				new Select();
+				setVisible(false);
+			}
+		});
+    }//btn_set
 }
