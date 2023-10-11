@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class Review extends JFrame {	
@@ -23,6 +24,10 @@ public class Review extends JFrame {
 	private JLabel star;
 	private JLabel address;
 	private JTextField f_address;
+	private JLabel tag;
+	private JTextField f_tag;
+	private JLabel write;
+	private JTextArea t_review;
 
 	Review() {
 		setTitle("리뷰 작성하기");
@@ -77,13 +82,31 @@ public class Review extends JFrame {
 		f_address.setBounds(130, 150, 400, 45);
 		f_address.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
 		
+		//태그
+		tag = new JLabel("태그");
+		tag.setBounds(30, 200, 100, 50);
+		tag.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
+		f_tag = new JTextField();
+		f_tag.setBounds(130, 210, 400, 45);
+		f_tag.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
 		
+		//후기 작성
+		write = new JLabel("후기");
+		write.setBounds(30, 250, 100, 50);
+		write.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
+		t_review = new JTextArea();
+		t_review.setBounds(130, 280, 400, 250);
+		t_review.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
 		
 		review.add(name);
 		review.add(f_name);
 		review.add(star);
 		review.add(address);
 		review.add(f_address);
+		review.add(tag);
+		review.add(f_tag);
+		review.add(write);
+		review.add(t_review);
 		add(review);
 	}
 
