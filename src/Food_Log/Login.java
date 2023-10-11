@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -75,8 +76,11 @@ public class Login extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//후기 작성 화면으로 넘어가게하기
+				JOptionPane.showMessageDialog(null, "로그인 성공", "로그인 확인", JOptionPane.INFORMATION_MESSAGE);
+				new Select();
 				setVisible(false);
+				
+				//JOptionPane.showMessageDialog(null, "로그인 실패", "로그인 확인", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 	}
