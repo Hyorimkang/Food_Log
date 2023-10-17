@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -76,11 +77,32 @@ public class Login extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "로그인 성공", "로그인 확인", JOptionPane.INFORMATION_MESSAGE);
+				String u_id = userId.getText();
+				String u_pw = userPw.getText();
+				
+				try {
+//					String sql = "SELECT * FROM user_info where user_id = " + u_id;
+//					ResultSet id = stmt.excuteQuery(sql); 
+//					sql = "SELECT * FROM user_info where user_pw = " + u_pw;
+//					ResultSet pw = stmt.excuteQuery(sql);
+//					
+//					if(u_id.equals(id)&&u_pw.equals(pw)) {
+//						JOptionPane.showMessageDialog(null, "로그인 성공", "로그인 확인", JOptionPane.INFORMATION_MESSAGE);
+//					}
+//					else {
+//						JOptionPane.showMessageDialog(null, "로그인 실패", "로그인 확인", JOptionPane.INFORMATION_MESSAGE);
+//					}
+				}catch(Exception e1) {
+					System.out.println("데이터 조회 실패 이유 : " + e1.toString());
+					JOptionPane.showMessageDialog(null, "로그인 실패", "로그인 확인", JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+				
+				
 				new Select();
 				setVisible(false);
 				
-				//JOptionPane.showMessageDialog(null, "로그인 실패", "로그인 확인", JOptionPane.INFORMATION_MESSAGE);
+				
 			}
 		});
 	}
