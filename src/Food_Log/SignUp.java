@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -134,11 +135,13 @@ public class SignUp extends JFrame{
 		add(jp);
 		
 		btnSignup.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "회원가입 성공", "회원가입 확인", JOptionPane.INFORMATION_MESSAGE);
 				new Login();
 				setVisible(false);
+				
+				//JOptionPane.showMessageDialog(null, "회원가입 실패", "회원가입 확인", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 	}
