@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -141,9 +142,7 @@ public class SignUp extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String u_pw = userPw.getText();
-				System.out.println(u_pw);
 				String u_pwcheck = userPwCheck.getText();
-				System.out.println(u_pwcheck);
 				
 				//비밀번호 확인
 				if(u_pw.equals(u_pwcheck)) {
@@ -174,14 +173,19 @@ public class SignUp extends JFrame{
 				String u_id = userId.toString();
 				String u_pw = userPw.toString();
 				
-				//삽입 쿼리문
-				String sql = "INSERT INTO user_info values(" + u_name + "," + u_id + "," + u_pw + ");";
-				JOptionPane.showMessageDialog(null, "회원가입 성공", "회원가입 확인", JOptionPane.INFORMATION_MESSAGE);
+				try {
+					First_Setting f = new First_Setting();
+					//삽입 쿼리문
+					String sql = "INSERT INTO user_info values(" + u_name + "," + u_id + "," + u_pw + ")";
+					//f.stmt.excute(sql);
+					JOptionPane.showMessageDialog(null, "회원가입 성공", "회원가입 확인", JOptionPane.INFORMATION_MESSAGE);
+					
+				}catch(Exception e1) {
+					System.out.println("데이터 조회 실패 이유 : " + e1.toString());
+					JOptionPane.showMessageDialog(null, "회원가입 실패", "회원가입 확인", JOptionPane.INFORMATION_MESSAGE);
+				}
 				new Login();
 				setVisible(false);
-				
-				//JOptionPane.showMessageDialog(null, "회원가입 실패", "회원가입 확인", JOptionPane.INFORMATION_MESSAGE);
-			
 				
 			}
 		});
