@@ -13,14 +13,4 @@ public class Setting {
 		conn = DriverManager.getConnection(url, user, password);
 		stmt = conn.createStatement();
 	}
-	
-	public static void main(String[] args) {
-		try {
-			System.out.println("연결 성공");
-			new Setting();
-		} catch (Exception e) {
-			System.out.println("연결 실패");
-			e.printStackTrace();
-		}
-	}
 }
