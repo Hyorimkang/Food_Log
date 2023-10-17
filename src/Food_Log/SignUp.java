@@ -26,6 +26,7 @@ public class SignUp extends JFrame{
 	private JPasswordField userPw;
 	private JLabel lblPwCheck;
 	private JPasswordField userPwCheck;
+	private JButton btn_pwCheck;
 	
 	private JButton btnSignup;
 	private JButton btnBack;
@@ -53,6 +54,7 @@ public class SignUp extends JFrame{
 		userId();
 		userPw();
 		userPwCheck();
+		btn_pwCheck();
 		btnSignup();
 		btnBack();
 		
@@ -124,6 +126,36 @@ public class SignUp extends JFrame{
 		add(jp);
 	}
 	
+	//비밀번호 확인 버튼
+	public void btn_pwCheck() {
+		btn_pwCheck = new JButton("확인");
+		btn_pwCheck.setBounds(650, 450, 70, 30);
+		btn_pwCheck.setBackground(Color.white);
+		btn_pwCheck.setFocusPainted(false);
+		btn_pwCheck.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 15));
+		jp.add(btn_pwCheck);
+		add(jp);
+		
+		btn_pwCheck.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String u_pw = userPw.getText();
+				System.out.println(u_pw);
+				String u_pwcheck = userPwCheck.getText();
+				System.out.println(u_pwcheck);
+				
+				//비밀번호 확인
+				if(u_pw.equals(u_pwcheck)) {
+					JOptionPane.showMessageDialog(null, "비밀번호가 일치합니다.", "비밀번호 확인", JOptionPane.INFORMATION_MESSAGE);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "비밀번호가 불일치합니다.", "비밀번호 확인", JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+		});
+	}
+	
 	//회원가입 버튼
 	public void btnSignup() {
 		btnSignup = new JButton("회원가입");
@@ -137,11 +169,20 @@ public class SignUp extends JFrame{
 		btnSignup.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//문자화
+				String u_name = userName.toString();
+				String u_id = userId.toString();
+				String u_pw = userPw.toString();
+				
+				//삽입 쿼리문
+				String sql = "INSERT INTO user_info values(" + u_name + "," + u_id + "," + u_pw + ");";
 				JOptionPane.showMessageDialog(null, "회원가입 성공", "회원가입 확인", JOptionPane.INFORMATION_MESSAGE);
 				new Login();
 				setVisible(false);
 				
 				//JOptionPane.showMessageDialog(null, "회원가입 실패", "회원가입 확인", JOptionPane.INFORMATION_MESSAGE);
+			
+				
 			}
 		});
 	}
