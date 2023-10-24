@@ -174,10 +174,10 @@ public class SignUp extends JFrame{
 				String u_pw = userPw.toString();
 				
 				try {
-					//First_Setting f = new First_Setting();
+					Setting f = new Setting();
 					//삽입 쿼리문
 					String sql = "INSERT INTO user_info values(" + u_name + "," + u_id + "," + u_pw + ")";
-					//f.stmt.excute(sql);
+					f.stmt.execute(sql);
 					JOptionPane.showMessageDialog(null, "회원가입 성공", "회원가입 확인", JOptionPane.INFORMATION_MESSAGE);
 					
 				}catch(Exception e1) {
