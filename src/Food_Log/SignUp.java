@@ -174,7 +174,7 @@ public class SignUp extends JFrame{
 				String u_pw = userPw.toString();
 				
 				try {
-					First_Setting f = new First_Setting();
+					//First_Setting f = new First_Setting();
 					//삽입 쿼리문
 					String sql = "INSERT INTO user_info values(" + u_name + "," + u_id + "," + u_pw + ")";
 					//f.stmt.excute(sql);
