@@ -63,18 +63,40 @@ public class Review extends JFrame {
 		
 		//식당 별점
 		star = new JLabel("별점");
-		star.setBounds(30, 90, 100, 30);
+		star.setBounds(30, 85, 100, 30);
 		star.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
-//		JPanel sp = new JPanel();
-//		sp.setLayout(new GridLayout(1,5));
-//		JButton[] star = new JButton[5];
-//		//int x = 100;
-//		for(int i =0; i<star.length; i++) {
-//			star[i].setBounds(100, 100, 50, 50);
-//			star[i].setBackground(Color.white);
-//			star[i].setFocusPainted(false);
-//			star[i].setBorderPainted(false);
-//		}
+		
+		JButton star1 = new JButton("1");
+		star1.setBounds(130, 85, 45, 35);
+		star1.setBackground(Color.white);
+		star1.setFocusPainted(false);
+		//star1.setBorderPainted(false);
+		
+		JButton star2 = new JButton("2");
+		star2.setBounds(175, 85, 45, 35);
+		star2.setBackground(Color.white);
+		star2.setFocusPainted(false);
+		//star2.setBorderPainted(false);
+		
+		JButton star3 = new JButton("3");
+		star3.setBounds(220, 85, 45, 35);
+		star3.setBackground(Color.white);
+		star3.setFocusPainted(false);
+		//star3.setBorderPainted(false);
+		
+		JButton star4 = new JButton("4");
+		star4.setBounds(265, 85, 45, 35);
+		star4.setBackground(Color.white);
+		star4.setFocusPainted(false);
+		//star4.setBorderPainted(false);
+		
+		JButton star5 = new JButton("5");
+		star5.setBounds(309, 85, 45, 35);
+		star5.setBackground(Color.white);
+		star5.setFocusPainted(false);
+		//star5.setBorderPainted(false);
+		
+		
 		
 		//주소
 		address = new JLabel("주소");
@@ -116,8 +138,14 @@ public class Review extends JFrame {
 		
 		review.add(name);
 		review.add(f_name);
-		review.add(star);
+		
 		review.add(address);
+		review.add(star);
+		review.add(star1);
+		review.add(star2);
+		review.add(star3);
+		review.add(star4);
+		review.add(star5);
 		review.add(f_address);
 		review.add(btn_address);
 		review.add(tag);
