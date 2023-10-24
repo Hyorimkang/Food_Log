@@ -28,8 +28,8 @@ public class NaverMap implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String clientId = "앱 등록 시 발급받은 Client ID";
-		String clientSecret = "앱 등록 시 발급 받은 Client Secret";
+	      String clientId = "985455";
+	      String clientSecret = "83e31f2cb4f83d2576e3afb75fa7cf6c";
 		AddressVO vo = null;
 		
 		try {

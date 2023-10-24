@@ -70,31 +70,26 @@ public class Review extends JFrame {
 		star1.setBounds(130, 85, 45, 35);
 		star1.setBackground(Color.white);
 		star1.setFocusPainted(false);
-		//star1.setBorderPainted(false);
 		
 		JButton star2 = new JButton("2");
 		star2.setBounds(175, 85, 45, 35);
 		star2.setBackground(Color.white);
 		star2.setFocusPainted(false);
-		//star2.setBorderPainted(false);
 		
 		JButton star3 = new JButton("3");
 		star3.setBounds(220, 85, 45, 35);
 		star3.setBackground(Color.white);
 		star3.setFocusPainted(false);
-		//star3.setBorderPainted(false);
 		
 		JButton star4 = new JButton("4");
 		star4.setBounds(265, 85, 45, 35);
 		star4.setBackground(Color.white);
 		star4.setFocusPainted(false);
-		//star4.setBorderPainted(false);
 		
 		JButton star5 = new JButton("5");
 		star5.setBounds(309, 85, 45, 35);
 		star5.setBackground(Color.white);
 		star5.setFocusPainted(false);
-		//star5.setBorderPainted(false);
 		
 		
 		
