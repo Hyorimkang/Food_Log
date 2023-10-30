@@ -24,10 +24,12 @@ public class Review extends JFrame {
 	private JLabel star;
 	private JLabel address;
 	private JTextField f_address;
+	private JButton btn_address;
 	private JLabel tag;
 	private JTextField f_tag;
 	private JLabel write;
 	private JTextArea t_review;
+	private JButton btn_submit;
 
 	Review() {
 		setTitle("리뷰 작성하기");
@@ -61,52 +63,91 @@ public class Review extends JFrame {
 		
 		//식당 별점
 		star = new JLabel("별점");
-		star.setBounds(30, 100, 100, 30);
+		star.setBounds(30, 85, 100, 30);
 		star.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
-//		JPanel sp = new JPanel();
-//		sp.setLayout(new GridLayout(1,5));
-//		JButton[] star = new JButton[5];
-//		//int x = 100;
-//		for(int i =0; i<star.length; i++) {
-//			star[i].setBounds(100, 100, 50, 50);
-//			star[i].setBackground(Color.white);
-//			star[i].setFocusPainted(false);
-//			star[i].setBorderPainted(false);
-//		}
+		
+		JButton star1 = new JButton("1");
+		star1.setBounds(130, 85, 45, 35);
+		star1.setBackground(Color.white);
+		star1.setFocusPainted(false);
+		
+		JButton star2 = new JButton("2");
+		star2.setBounds(175, 85, 45, 35);
+		star2.setBackground(Color.white);
+		star2.setFocusPainted(false);
+		
+		JButton star3 = new JButton("3");
+		star3.setBounds(220, 85, 45, 35);
+		star3.setBackground(Color.white);
+		star3.setFocusPainted(false);
+		
+		JButton star4 = new JButton("4");
+		star4.setBounds(265, 85, 45, 35);
+		star4.setBackground(Color.white);
+		star4.setFocusPainted(false);
+		
+		JButton star5 = new JButton("5");
+		star5.setBounds(309, 85, 45, 35);
+		star5.setBackground(Color.white);
+		star5.setFocusPainted(false);
+		
+		
 		
 		//주소
 		address = new JLabel("주소");
-		address.setBounds(30, 150, 300, 50);
+		address.setBounds(30, 130, 300, 50);
 		address.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
 		f_address = new JTextField();
-		f_address.setBounds(130, 150, 400, 45);
+		f_address.setBounds(130, 130, 400, 45);
 		f_address.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
+		
+		//주소 삽입을 위한 버튼
+		btn_address = new JButton("주소 검색");
+		btn_address.setBounds(130, 180, 150, 35);
+		btn_address.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 20));
+		btn_address.setBackground(Color.white);
+		btn_address.setFocusPainted(false);
 		
 		//태그
 		tag = new JLabel("태그");
-		tag.setBounds(30, 200, 100, 50);
+		tag.setBounds(30, 230, 100, 50);
 		tag.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
 		f_tag = new JTextField();
-		f_tag.setBounds(130, 210, 400, 45);
+		f_tag.setBounds(130, 230, 400, 45);
 		f_tag.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
 		
 		//후기 작성
 		write = new JLabel("후기");
-		write.setBounds(30, 250, 100, 50);
+		write.setBounds(30, 290, 100, 50);
 		write.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
 		t_review = new JTextArea();
-		t_review.setBounds(130, 280, 400, 250);
+		t_review.setBounds(130, 300, 400, 200);
 		t_review.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
+		
+		//완료 버튼
+		btn_submit = new JButton("리뷰 작성 완료");
+		btn_submit.setBounds(130, 510, 250, 40);
+		btn_submit.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 20));
+		btn_submit.setBackground(Color.white);
+		btn_submit.setFocusPainted(false);
 		
 		review.add(name);
 		review.add(f_name);
-		review.add(star);
+		
 		review.add(address);
+		review.add(star);
+		review.add(star1);
+		review.add(star2);
+		review.add(star3);
+		review.add(star4);
+		review.add(star5);
 		review.add(f_address);
+		review.add(btn_address);
 		review.add(tag);
 		review.add(f_tag);
 		review.add(write);
 		review.add(t_review);
+		review.add(btn_submit);
 		add(review);
 	}
 

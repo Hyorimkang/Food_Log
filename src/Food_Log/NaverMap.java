@@ -30,6 +30,11 @@ public class NaverMap implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
+=======
+	      String clientId = "985455";
+	      String clientSecret = "83e31f2cb4f83d2576e3afb75fa7cf6c";
+>>>>>>> 7cd9e8be1df8c4f3decc8331ff0062c99f96a361
 		AddressVO vo = null;
 		
 		try {
