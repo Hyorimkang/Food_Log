@@ -12,12 +12,20 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
+	<classpathentry kind="lib" path="src/json.jar">
+=======
 	<classpathentry kind="lib" path="C:/Food_Log/Food_Log/src/json.jar">
+>>>>>>> 7cd9e8be1df8c4f3decc8331ff0062c99f96a361
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
+	<classpathentry kind="lib" path="src/json-simple-1.1.1.jar">
+=======
 	<classpathentry kind="lib" path="C:/Food_Log/Food_Log/src/json-simple-1.1.1.jar">
+>>>>>>> 7cd9e8be1df8c4f3decc8331ff0062c99f96a361
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
