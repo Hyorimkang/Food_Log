@@ -20,8 +20,6 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 public class NaverMap implements ActionListener {
-	private String clientId = "OqgoSurgouSKarBHPfLS";
-	private String clientSecret = "TyGVdQk2QH";
 
 	Project01_F naverMap;
 	public NaverMap(Project01_F naverMap) {
@@ -30,17 +28,14 @@ public class NaverMap implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
-=======
 	      String clientId = "985455";
 	      String clientSecret = "83e31f2cb4f83d2576e3afb75fa7cf6c";
->>>>>>> 7cd9e8be1df8c4f3decc8331ff0062c99f96a361
 		AddressVO vo = null;
 		
 		try {
 			String address = naverMap.address.getText();
 			String addr = URLEncoder.encode(address, "UTF-8");
-			String apiURL = "https://openapi.naver.com/v1/search/local" + addr;
+			String apiURL = "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=" + addr;
 			URL url = new URL(apiURL);
 			
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -97,8 +92,8 @@ public class NaverMap implements ActionListener {
 			URL url = new URL(URL_STATICMAP);
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
-			con.setRequestProperty("X-NCP-APIGW-API-KEY-ID", clientId);
-			con.setRequestProperty("X-NCP-APIGW-API-KEY", clientSecret);
+			con.setRequestProperty("X-NCP-APIGW-API-KEY-ID", "앱 등록 시 발급받은 Client ID");
+			con.setRequestProperty("X-NCP-APIGW-API-KEY", "앱 등록 시 발급 받은 Client Secret");
 			
 			int responseCode = con.getResponseCode();
 			BufferedReader br;
