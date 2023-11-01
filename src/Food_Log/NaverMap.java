@@ -21,9 +21,13 @@ import org.json.JSONTokener;
 
 public class NaverMap implements ActionListener {
 
-	Project01_F naverMap;
+//	Review review;
+//	public NaverMap(Review naverMap) {
+//		this.review = naverMap;
+//	}
+	Project01_F review;
 	public NaverMap(Project01_F naverMap) {
-		this.naverMap = naverMap;
+		this.review = naverMap;
 	}
 	
 	@Override
@@ -33,7 +37,7 @@ public class NaverMap implements ActionListener {
 		AddressVO vo = null;
 		
 		try {
-			String address = naverMap.address.getText();
+			String address = review.f_address.getText();
 			String addr = URLEncoder.encode(address, "UTF-8");
 			String apiURL = "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=" + addr;
 			URL url = new URL(apiURL);
@@ -119,11 +123,11 @@ public class NaverMap implements ActionListener {
 				
 				is.close();
 				ImageIcon img = new ImageIcon(file.getName());
-				naverMap.imageLabel.setIcon(img);
-				naverMap.resAddress.setText(vo.getRoadAddress());
-				naverMap.jibunAddress.setText(vo.getJibunAddress());
-				naverMap.resX.setText(vo.getX());
-				naverMap.resY.setText(vo.getY());
+//				naverMap.imageLabel.setIcon(img);
+//				naverMap.resAddress.setText(vo.getRoadAddress());
+//				naverMap.jibunAddress.setText(vo.getJibunAddress());
+//				naverMap.resX.setText(vo.getX());
+//				naverMap.resY.setText(vo.getY());
 				
 			} else {
 				System.out.println(responseCode);

@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class Project01_F {
-	JTextField address;
+	JTextField f_address;
 	JLabel resAddress, resX, resY, jibunAddress;
 	JLabel imageLabel;
 	
@@ -23,15 +23,15 @@ public class Project01_F {
 		imageLabel = new JLabel("지도보기");                    // JFrame 안쪽 영역 상단에 들어갈 지도보기
 		JPanel pan = new JPanel();
 		JLabel addressLbl = new JLabel("주소입력");             // JFrame 안쪽 영역 상단에 들어갈 주소입력
-		address = new JTextField(50);
+		f_address = new JTextField(50);
 		JButton btn = new JButton("클릭");                      // JFrame 안쪽 영역에 들어갈 클릭 버튼
 		pan.add(addressLbl);
-		pan.add(address);
+		pan.add(f_address);
 		pan.add(btn);	
 		btn.addActionListener(new NaverMap(this));              // pan에 생성한 버튼(btn) 클릭 시 처리하는 이벤트 핸들러.
 		
 		JPanel pan1 = new JPanel();
-		pan1.setLayout(new GridLayout(4, 1));                   // 지도 하단 그리드 4행 1열로 생성.
+		pan1.setLayout(new GridLayout(4, 1));               // 지도 하단 그리드 4행 1열로 생성.
 		resAddress = new JLabel("도로명");                      // 그리드 1행에 들어갈 도로명
 		jibunAddress = new JLabel("지번주소");                  // 그리드 2행에 들어갈 지번주소
 		resX = new JLabel("경도");                              // 그리드 3행에 들어갈 경도
