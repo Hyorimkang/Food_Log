@@ -50,6 +50,7 @@ public class SignUp extends JFrame{
 		jp.setVisible(true);
 		jp.setBackground(Color.white);
 		
+		
 		Signup();
 		userName();
 		userId();
@@ -175,6 +176,8 @@ public class SignUp extends JFrame{
 				
 				try {
 					Setting s = new Setting();
+					new Create_Schema();
+					new Create_Table_user_info();
 					//삽입 쿼리문
 					String sql = "INSERT INTO user_info values('" + u_name + "','" + u_id + "','" + u_pw + "')";
 					s.stmt.execute(sql);
