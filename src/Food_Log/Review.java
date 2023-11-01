@@ -71,17 +71,6 @@ public class Review extends JFrame {
 		star1.setBounds(130, 85, 45, 35);
 		star1.setBackground(Color.white);
 		star1.setFocusPainted(false);
-		star1.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				l_star = new JLabel("1");
-				l_star.setBounds(330, 85, 20, 20);
-				l_star.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
-				review.add(l_star);
-			}
-		});
 		
 		JButton star2 = new JButton("2");
 		star2.setBounds(175, 85, 45, 35);
@@ -103,7 +92,66 @@ public class Review extends JFrame {
 		star5.setBackground(Color.white);
 		star5.setFocusPainted(false);
 		
+		//버튼 이벤트 처리
+		star1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				star1.setBackground(Color.YELLOW);
+                star2.setBackground(Color.white);
+                star3.setBackground(Color.white);
+                star4.setBackground(Color.white);
+                star5.setBackground(Color.white);}
+		});
 		
+		star2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				star1.setBackground(Color.white);
+                star2.setBackground(Color.YELLOW);
+                star3.setBackground(Color.white);
+                star4.setBackground(Color.white);
+                star5.setBackground(Color.white);}
+		});
+		
+		star3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				star1.setBackground(Color.white);
+                star2.setBackground(Color.white);
+                star3.setBackground(Color.YELLOW);
+                star4.setBackground(Color.white);
+                star5.setBackground(Color.white);}
+		});
+		
+		star4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				star1.setBackground(Color.white);
+                star2.setBackground(Color.white);
+                star3.setBackground(Color.white);
+                star4.setBackground(Color.YELLOW);
+                star5.setBackground(Color.white);}
+		});
+		
+		star5.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				star1.setBackground(Color.white);
+                star2.setBackground(Color.white);
+                star3.setBackground(Color.white);
+                star4.setBackground(Color.white);
+                star5.setBackground(Color.YELLOW);}
+		});
 		
 		//주소
 		address = new JLabel("주소");
