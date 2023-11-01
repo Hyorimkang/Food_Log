@@ -22,6 +22,7 @@ public class Review extends JFrame {
 	private JLabel name;
 	private JTextField f_name;
 	private JLabel star;
+	private JLabel l_star;
 	private JLabel address;
 	private JTextField f_address;
 	private JButton btn_address;
@@ -70,6 +71,16 @@ public class Review extends JFrame {
 		star1.setBounds(130, 85, 45, 35);
 		star1.setBackground(Color.white);
 		star1.setFocusPainted(false);
+		star1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				l_star = new JLabel("1");
+				l_star.setBounds(330, 85, 20, 20);
+				review.add(l_star);
+			}
+		});
 		
 		JButton star2 = new JButton("2");
 		star2.setBounds(175, 85, 45, 35);

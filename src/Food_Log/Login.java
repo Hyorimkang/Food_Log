@@ -82,7 +82,7 @@ public class Login extends JFrame{
 				
 				try {
 					Setting s = new Setting();
-					String sql = "SELECT * FROM user_info where user_id = " + u_id;
+					String sql = "SELECT * FROM user_info where user_id = '" + u_id + "'";
 					ResultSet id = s.stmt.executeQuery(sql); 
 					sql = "SELECT * FROM user_info where user_pw = " + u_pw;
 					ResultSet pw = s.stmt.executeQuery(sql);
