@@ -9,6 +9,7 @@ import javax.swing.*;
 public class HashTag extends JFrame {
 	private ImageIcon Back = new ImageIcon("./img/Icon_Back.png");
 
+	// 해시태그 검색하기
 	HashTag() {
 		setTitle("해시태그 검색하기");
 		setSize(900, 600);
@@ -21,6 +22,11 @@ public class HashTag extends JFrame {
 		btnBack();
 
 		setVisible(true);
+	}
+	
+	// 검색창
+	public void searchBar() {
+		JPanel bar = new JPanel();
 	}
 
 	//뒤로가기 버튼
