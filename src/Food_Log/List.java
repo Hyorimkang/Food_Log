@@ -52,7 +52,10 @@ public class List extends JFrame{
 		
 		//뒤로가기
 		btnBack = new JButton(Back);
-		btnBack.setBounds(20,20,40,40);
+		btnBack.setBounds(15, 15, 50, 50);
+		btnBack.setBackground(Color.white);
+		btnBack.setFocusPainted(false);
+		btnBack.setBorderPainted(false);
 		add(btnBack);
 
         // 제목을 담을 JLabel 생성
