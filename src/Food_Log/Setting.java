@@ -10,6 +10,7 @@ public class Setting {
 	static String password = "0178";
 	public Connection conn;
 	public Statement stmt;
+	public PreparedStatement pstmt;
 	Setting() throws Exception {
 		conn = DriverManager.getConnection(url, user, password);
 		stmt = conn.createStatement();
