@@ -21,18 +21,10 @@ public class Create_Table_food_list extends Create_Schema {
 					+ "`food_name` VARCHAR(50), \r\n"
 					+ "`food_place` VARCHAR(70), \r\n"
 					+ "`food_time` DATE, \r\n"
-					+ "`food_star` INT);"); // 식당 이름, 주소, 방문한 날짜, 별점
+					+ "`food_star` INT"
+					+ "`food_hash` VARCHAR(50));"); // 식당 이름, 주소, 방문한 날짜, 별점, 해시태그
 
 			System.out.println("food_list 테이블 생성");
-		}
-	}
-	public static void main(String args[]) {
-		try {
-			new Create_Table_food_list();
-			System.out.println("성공");
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("실패");
 		}
 	}
 }
