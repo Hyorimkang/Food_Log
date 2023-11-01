@@ -169,14 +169,14 @@ public class SignUp extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//문자화
-				String u_name = userName.toString();
-				String u_id = userId.toString();
-				String u_pw = userPw.toString();
+				String u_name = userName.getText();
+				String u_id = userId.getText();
+				String u_pw = userPw.getText();
 				
 				try {
 					Setting s = new Setting();
 					//삽입 쿼리문
-					String sql = "INSERT INTO user_info values(" + u_name + "," + u_id + "," + u_pw + ")";
+					String sql = "INSERT INTO user_info values('" + u_name + "','" + u_id + "','" + u_pw + "')";
 					s.stmt.execute(sql);
 					JOptionPane.showMessageDialog(null, "회원가입 성공", "회원가입 확인", JOptionPane.INFORMATION_MESSAGE);
 					
