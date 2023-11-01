@@ -82,10 +82,9 @@ public class Login extends JFrame{
 				
 				try {
 					Setting s = new Setting();
-					String sql = "SELECT user_pw FROM user_info where user_id = ?";
-					s.pstmt = s.conn.prepareStatement(sql);
-					s.pstmt.setString(1, u_id);
-					ResultSet rs = s.pstmt.executeQuery();
+					String sql = "SELECT user_pw FROM user_info WHERE user_id = " + "'" + u_id + "'";
+					ResultSet rs = s.stmt.executeQuery(sql);
+					
 					if(rs.next()) {
 						if(rs.getString(1).equals(u_pw)) {
 							JOptionPane.showMessageDialog(null, "로그인 성공", "로그인 확인", JOptionPane.INFORMATION_MESSAGE);
@@ -94,15 +93,6 @@ public class Login extends JFrame{
 							JOptionPane.showMessageDialog(null, "로그인 실패", "로그인 확인", JOptionPane.INFORMATION_MESSAGE);
 						}
 					}
-//					sql = "SELECT * FROM user_info where user_pw = " + u_pw;
-//					ResultSet pw = s.stmt.executeQuery(sql);
-//					
-//					if(u_id.equals(id)&&u_pw.equals(pw)) {
-//						JOptionPane.showMessageDialog(null, "로그인 성공", "로그인 확인", JOptionPane.INFORMATION_MESSAGE);
-//					}
-//					else {
-//						JOptionPane.showMessageDialog(null, "로그인 실패", "로그인 확인", JOptionPane.INFORMATION_MESSAGE);
-//					}
 					
 					
 				}catch(Exception e1) {

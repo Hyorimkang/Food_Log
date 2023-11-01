@@ -78,6 +78,7 @@ public class Review extends JFrame {
 				// TODO Auto-generated method stub
 				l_star = new JLabel("1");
 				l_star.setBounds(330, 85, 20, 20);
+				l_star.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
 				review.add(l_star);
 			}
 		});
