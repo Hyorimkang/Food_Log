@@ -1,11 +1,11 @@
 package Food_Log;
 
 public class Create_Table_user_info extends Create_Schema {
+	public String table_name = "user_info";
+	private boolean table_exists = false;
+	private String check_table = "CHECK TABLE " + schema_name + "." + table_name;
 
 	public Create_Table_user_info() throws Exception {
-		String table_name = "user_info";
-		boolean table_exists = false;
-		String check_table = "CHECK TABLE " + schema_name + "." + table_name;
 
 		new Setting();
 		new Create_Schema();

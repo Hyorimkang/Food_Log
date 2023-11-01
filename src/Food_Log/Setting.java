@@ -4,7 +4,6 @@ import java.sql.*;
 
 // DB 초기 세팅
 public class Setting {
-//	private String url = "jdbc:mysql://127.0.0.1/?serverTimezone=UTC&allowLoadLocalInfile=true";
 	private String url = "jdbc:mysql://127.0.0.1/food_log?serverTimezone=UTC&allowLoadLocalInfile=true";
 	static String user = "root";
 	static String password = "0178";
