@@ -1,5 +1,6 @@
 package Food_Log;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -24,7 +25,7 @@ public class Review extends JFrame {
 	private JLabel star;
 	private JLabel l_star;
 	private JLabel address;
-	private JTextField f_address;
+	JTextField f_address;
 	private JButton btn_address;
 	private JLabel tag;
 	private JTextField f_tag;
@@ -42,6 +43,7 @@ public class Review extends JFrame {
 		getContentPane().setBackground(Color.white);
 		
 		review();
+		map();
 		btnBack();
 		
 		setVisible(true);
@@ -167,6 +169,7 @@ public class Review extends JFrame {
 		btn_address.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 20));
 		btn_address.setBackground(Color.white);
 		btn_address.setFocusPainted(false);
+		btn_address.addActionListener(new NaverMap(null));
 		
 		//태그
 		tag = new JLabel("태그");
@@ -209,6 +212,13 @@ public class Review extends JFrame {
 		review.add(t_review);
 		review.add(btn_submit);
 		add(review);
+	}
+	
+	//지도
+	public void map() {
+		JPanel map = new JPanel();
+		map.setBounds(0,0,350,600);
+		add(map);
 	}
 
 	//뒤로가기 버튼
