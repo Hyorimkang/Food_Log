@@ -26,7 +26,7 @@ public class HashTag extends JFrame {
 	//뒤로가기 버튼
 	public void btnBack() {
 		JButton btnBack = new JButton(Back);
-		btnBack.setBounds(20, 20, 70, 70);
+		btnBack.setBounds(15, 15, 50, 50);
 		btnBack.setBackground(Color.white);
 		btnBack.setFocusPainted(false);
 		btnBack.setBorderPainted(false);

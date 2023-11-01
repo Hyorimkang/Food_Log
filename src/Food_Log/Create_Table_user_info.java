@@ -25,13 +25,4 @@ public class Create_Table_user_info extends Create_Schema {
 			System.out.println("user_info 테이블 생성");
 		}
 	}
-	public static void main(String args[]) {
-		try {
-			new Create_Table_user_info();
-			System.out.println("성공");
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("실패");
-		}
-	}
 }
