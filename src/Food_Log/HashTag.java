@@ -20,6 +20,7 @@ public class HashTag extends JFrame {
 	private static JList<String> list;
 	private static JScrollPane scrollPane;
 
+	// 해시태그 검색하기
 	HashTag() {
 		setTitle("해시태그 검색하기");
 		setSize(900, 600);
@@ -33,15 +34,14 @@ public class HashTag extends JFrame {
 
 		setVisible(true);
 	}
-	
+
 	public void list() {
 		// 배경 패널
         panel = new JPanel();
         panel.setBounds(0, 0, 900, 600);
         panel.setBackground(Color.white);
 		
-		//뒤로가기
-		btnBack = new JButton(Back);
+		JButton btnBack = new JButton(Back);
 		btnBack.setBounds(15, 15, 50, 50);
 		btnBack.setBackground(Color.white);
 		btnBack.setFocusPainted(false);

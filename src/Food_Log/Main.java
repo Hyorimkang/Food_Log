@@ -70,8 +70,12 @@ public class Main extends JFrame {
 		signup_btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new SignUp();
-				setVisible(false);
+				try {
+					new SignUp();
+					setVisible(false);
+				} catch (Exception err) {
+					err.printStackTrace();
+				}
 			}
 		});
 		
