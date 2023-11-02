@@ -21,7 +21,6 @@ public class List extends JFrame{
 	private static JPanel panel;
 	private static JPanel p_list;
 	private static JButton btnDelete;
-	private static JButton btnInsert;
 	private static JButton btnBack;
 	private static ImageIcon Back =new ImageIcon("./img/Icon_Back.png");
 	private static JLabel title;
