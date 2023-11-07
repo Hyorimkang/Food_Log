@@ -1,9 +1,7 @@
 package Food_Log;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 
 public class Review extends JFrame {	
 	private ImageIcon Back = new ImageIcon("./img/Icon_Back.png");
@@ -53,6 +52,7 @@ public class Review extends JFrame {
 		review = new JPanel();
 		review.setBounds(350, 0, 550, 600);
 		review.setLayout(null);
+		review.setBackground(Color.WHITE);
 		
 		//식당 이름
 		name = new JLabel("식당 이름 ");
@@ -186,6 +186,7 @@ public class Review extends JFrame {
 		t_review = new JTextArea();
 		t_review.setBounds(130, 300, 400, 200);
 		t_review.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
+		t_review.setBorder(new LineBorder(Color.BLACK));
 		
 		//완료 버튼
 		btn_submit = new JButton("리뷰 작성 완료");
@@ -218,7 +219,15 @@ public class Review extends JFrame {
 	public void map() {
 		JPanel map = new JPanel();
 		map.setBounds(0,0,350,600);
+		
+		
+		JLabel l_map = new JLabel("지도");
+		l_map.setBounds(0, 0, 100, 50);
+		l_map.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 20));
+		map.add(l_map);
+		
 		add(map);
+		
 	}
 
 	//뒤로가기 버튼
