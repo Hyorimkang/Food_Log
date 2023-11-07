@@ -40,6 +40,8 @@ public class SignUp extends JFrame {
 	private boolean checkId = false, checkPass = false;
 
 	private ImageIcon Back = new ImageIcon("./img/Icon_Back.png");
+	
+	private Setting s;
 
 	public static void main(String[] args) {
 		try {
@@ -50,9 +52,7 @@ public class SignUp extends JFrame {
 	}
 
 	public SignUp() throws Exception {
-		new Setting();
-		new Create_Schema();
-		new Create_Table_user_info();
+		s = new Setting();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(900,600);
@@ -130,7 +130,6 @@ public class SignUp extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Setting s = new Setting();
 					Create_Table_user_info info = new Create_Table_user_info();
 					String u_id = userId.getText();
 					String sql = "SELECT EXISTS (SELECT * FROM " + info.schema_name + "." + info.table_name
@@ -152,8 +151,8 @@ public class SignUp extends JFrame {
 						}
 					}
 
-				} catch (Exception err) {
-					err.printStackTrace();
+				} catch (Exception e1) {
+					System.out.println("데이터 조회 실패 이유 : " + e1.toString());
 				}
 			}
 		});
@@ -237,22 +236,20 @@ public class SignUp extends JFrame {
 
 				try {
 					if(checkId == true && checkPass == true) {
-						Setting s = new Setting();
-
 						//삽입 쿼리문
-						String sql = "INSERT INTO user_info values('" + u_name + "','" + u_id + "','" + u_pw + "')";
+						String sql = "INSERT INTO user_info(user_name, user_id, user_pw) values('" + u_name + "','" + u_id + "','" + u_pw + "')";
 						s.stmt.execute(sql);
 						JOptionPane.showMessageDialog(null, "회원가입 성공", "회원가입 확인", JOptionPane.INFORMATION_MESSAGE);
 						new Login();
 						setVisible(false);
 					}
 					else {
-						JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호를 확인해주십시오.", "회원가입 확인", JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호를 확인해주십시오.", "회원가입 확인", JOptionPane.ERROR_MESSAGE);
 					}
 
 				}catch(Exception e1) {
 					System.out.println("데이터 조회 실패 이유 : " + e1.toString());
-					JOptionPane.showMessageDialog(null, "회원가입 실패", "회원가입 확인", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "회원가입 실패", "회원가입 확인", JOptionPane.ERROR_MESSAGE);
 				}
 
 			}

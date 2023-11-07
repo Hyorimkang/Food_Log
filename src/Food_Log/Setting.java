@@ -4,13 +4,16 @@ import java.sql.*;
 
 // DB 초기 세팅
 public class Setting {
-	private String url = "jdbc:mysql://127.0.0.1/food_log?serverTimezone=UTC&allowLoadLocalInfile=true";
+	static String db_name = "";
+	private String url = "jdbc:mysql://127.0.0.1/" + db_name + "?serverTimezone=UTC&allowLoadLocalInfile=true";
 	static String user = "root";
 	static String password = "0178";
-	public Connection conn;
-	public Statement stmt;
+	static Connection conn;
+	static Statement stmt;
 	Setting() throws Exception {
 		conn = DriverManager.getConnection(url, user, password);
 		stmt = conn.createStatement();
+		
+		System.out.println("연결 성공");
 	}
 }
