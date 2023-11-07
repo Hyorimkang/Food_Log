@@ -49,8 +49,12 @@ public class Main extends JFrame {
 		login_btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new Login();
-				setVisible(false);
+				try {
+					new Login();
+					setVisible(false);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		
