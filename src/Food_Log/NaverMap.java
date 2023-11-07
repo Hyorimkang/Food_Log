@@ -32,8 +32,8 @@ public class NaverMap implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-	      String clientId = "985455";
-	      String clientSecret = "83e31f2cb4f83d2576e3afb75fa7cf6c";
+	      String clientId = "OqgoSurgouSKarBHPfLS";
+	      String clientSecret = "TyGVdQk2QH";
 		AddressVO vo = null;
 		
 		try {
@@ -96,8 +96,8 @@ public class NaverMap implements ActionListener {
 			URL url = new URL(URL_STATICMAP);
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
-			con.setRequestProperty("X-NCP-APIGW-API-KEY-ID", "앱 등록 시 발급받은 Client ID");
-			con.setRequestProperty("X-NCP-APIGW-API-KEY", "앱 등록 시 발급 받은 Client Secret");
+			con.setRequestProperty("X-NCP-APIGW-API-KEY-ID", "OqgoSurgouSKarBHPfLS");
+			con.setRequestProperty("X-NCP-APIGW-API-KEY", "TyGVdQk2QH");
 			
 			int responseCode = con.getResponseCode();
 			BufferedReader br;
