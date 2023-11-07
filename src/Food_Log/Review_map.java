@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Project01_F {
+public class Review_map {
 	JTextField f_address;
 	JLabel resAddress, resX, resY, jibunAddress;
 	JLabel imageLabel;
@@ -51,6 +51,6 @@ public class Project01_F {
 	}
 	
 	public static void main(String[] args) {
-		new Project01_F().initGUI();	
+		new Review_map().initGUI();	
 	}
 }
