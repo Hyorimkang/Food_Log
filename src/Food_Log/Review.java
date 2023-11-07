@@ -42,9 +42,9 @@ public class Review extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setBackground(Color.white);
 		
+		btnBack();
 		review();
 		map();
-		btnBack();
 		
 		setVisible(true);
 	}

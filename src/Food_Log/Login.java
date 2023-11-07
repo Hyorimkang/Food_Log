@@ -29,11 +29,13 @@ public class Login extends JFrame{
 	
 	private ImageIcon Back = new ImageIcon("./img/Icon_Back.png");
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		new Login();
 	}
 	
-	public Login() {
+	public Login() throws Exception {
+		new Create_Table_user_info();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(900,600);
 		setTitle("로그인");
@@ -44,6 +46,7 @@ public class Login extends JFrame{
 		jp.setLayout(null);
 		jp.setVisible(true);
 		jp.setBackground(Color.white);
+		
 		
 		lblLogin();
 		btnLogin();
@@ -84,23 +87,22 @@ public class Login extends JFrame{
 					Setting s = new Setting();
 					String sql = "SELECT user_pw FROM user_info WHERE user_id = " + "'" + u_id + "'";
 					ResultSet rs = s.stmt.executeQuery(sql);
-					
 					if(rs.next()) {
 						if(rs.getString(1).equals(u_pw)) {
 							JOptionPane.showMessageDialog(null, "로그인 성공", "로그인 확인", JOptionPane.INFORMATION_MESSAGE);
+							new Select();
+							setVisible(false);
 						}
 						else {
-							JOptionPane.showMessageDialog(null, "로그인 실패", "로그인 확인", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, "로그인 실패", "로그인 확인", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 					
 					
 				}catch(Exception e1) {
 					System.out.println("데이터 조회 실패 이유 : " + e1.toString());
-					JOptionPane.showMessageDialog(null, "로그인 실패", "로그인 확인", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "로그인 실패", "로그인 확인", JOptionPane.ERROR_MESSAGE);
 				}
-				new Select();
-				setVisible(false);
 			}
 		});
 	}
