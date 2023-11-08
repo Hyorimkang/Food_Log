@@ -2,7 +2,6 @@ package Food_Log;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
@@ -15,9 +14,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
-import com.mysql.cj.x.protobuf.MysqlxSql.StmtExecute;
-import com.mysql.cj.xdevapi.Result;
 
 public class SignUp extends JFrame {
 	private JPanel jp;
@@ -40,7 +36,7 @@ public class SignUp extends JFrame {
 	private boolean checkId = false, checkPass = false;
 
 	private ImageIcon Back = new ImageIcon("./img/Icon_Back.png");
-	
+
 	private Setting s;
 
 	public static void main(String[] args) {
