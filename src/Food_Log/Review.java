@@ -2,11 +2,8 @@ package Food_Log;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.security.MessageDigest;
-import java.sql.SQLException;
 import java.time.LocalDate;
 
 import javax.swing.ImageIcon;

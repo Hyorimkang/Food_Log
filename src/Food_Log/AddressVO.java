@@ -5,7 +5,7 @@ public class AddressVO {
 	private String jibunAddress;
 	private String x;
 	private String y;
-	
+
 	public AddressVO() {	}
 
 	public AddressVO(String roadAddress, String jibunAddress, String x, String y) {
@@ -53,6 +53,6 @@ public class AddressVO {
 		return "AddressVO [roadAddress=" + roadAddress + ", jibunAddress=" + jibunAddress + ", x=" + x + ", y=" + y
 				+ "]";
 	}
-	
-	
+
+
 }
