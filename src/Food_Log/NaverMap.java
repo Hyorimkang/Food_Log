@@ -25,15 +25,15 @@ public class NaverMap implements ActionListener {
 //	public NaverMap(Review naverMap) {
 //		this.review = naverMap;
 //	}
-	Project01_F review;
-	public NaverMap(Project01_F naverMap) {
+	Review_map review;
+	public NaverMap(Review_map naverMap) {
 		this.review = naverMap;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-	      String clientId = "OqgoSurgouSKarBHPfLS";
-	      String clientSecret = "TyGVdQk2QH";
+	      String clientId = "9mamhjhzl9";
+	      String clientSecret = "GHhSOiJz4wQOx8JhDY7ZXGpoxfcTRA2WC2ASgjZW";
 		AddressVO vo = null;
 		
 		try {
@@ -96,8 +96,8 @@ public class NaverMap implements ActionListener {
 			URL url = new URL(URL_STATICMAP);
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			con.setRequestMethod("GET");
-			con.setRequestProperty("X-NCP-APIGW-API-KEY-ID", "OqgoSurgouSKarBHPfLS");
-			con.setRequestProperty("X-NCP-APIGW-API-KEY", "TyGVdQk2QH");
+			con.setRequestProperty("X-NCP-APIGW-API-KEY-ID", "9mamhjhzl9");
+			con.setRequestProperty("X-NCP-APIGW-API-KEY", "GHhSOiJz4wQOx8JhDY7ZXGpoxfcTRA2WC2ASgjZW");
 			
 			int responseCode = con.getResponseCode();
 			BufferedReader br;
@@ -123,11 +123,11 @@ public class NaverMap implements ActionListener {
 				
 				is.close();
 				ImageIcon img = new ImageIcon(file.getName());
-//				naverMap.imageLabel.setIcon(img);
-//				naverMap.resAddress.setText(vo.getRoadAddress());
-//				naverMap.jibunAddress.setText(vo.getJibunAddress());
-//				naverMap.resX.setText(vo.getX());
-//				naverMap.resY.setText(vo.getY());
+				review.imageLabel.setIcon(img);
+				review.resAddress.setText(vo.getRoadAddress());
+				review.jibunAddress.setText(vo.getJibunAddress());
+				review.resX.setText(vo.getX());
+				review.resY.setText(vo.getY());
 				
 			} else {
 				System.out.println(responseCode);
