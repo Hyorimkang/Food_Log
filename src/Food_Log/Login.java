@@ -3,6 +3,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
 import java.sql.ResultSet;
 
 import javax.swing.ImageIcon;
@@ -58,6 +60,21 @@ public class Login extends JFrame{
 		setVisible(true);
 	}
 
+	// 유저 정보 저장 파일 생성
+	public static void createFile(String u_id) {
+		try {
+			File file = new File(userInfo);
+			FileWriter fw = new FileWriter(userInfo);
+			fw.write(u_id);
+			fw.close();
+			System.out.println("파일 생성 성공");
+		}catch(Exception e) {
+			System.out.println("파일 생성 실패");
+			System.out.println(e.toString());
+		}
+
+	}
+
 	public void lblLogin() {
 		lblLogin = new JLabel("LOGIN");
 		lblLogin.setBounds(370, 100, 200, 80);
@@ -91,6 +108,7 @@ public class Login extends JFrame{
 					if(rs.next()) {
 						if(rs.getString(1).equals(u_pw)) {
 							JOptionPane.showMessageDialog(null, "로그인 성공", "로그인 확인", JOptionPane.INFORMATION_MESSAGE);
+							createFile(u_id);
 							new Select();
 							setVisible(false);
 						}
@@ -140,7 +158,7 @@ public class Login extends JFrame{
 	//뒤로가기 버튼
 	public void btnBack() {
 		btnBack = new JButton(Back);
-		btnBack.setBounds(20,20,70, 70);
+		btnBack.setBounds(20, 20, 70, 70);
 		btnBack.setBackground(Color.white);
 		btnBack.setFocusPainted(false);
 		btnBack.setBorderPainted(false);
@@ -155,6 +173,4 @@ public class Login extends JFrame{
 			}
 		});
 	}
-
-
 }
