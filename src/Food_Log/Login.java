@@ -94,11 +94,12 @@ public class Login extends JFrame{
 							setVisible(false);
 						}
 						else {
-							JOptionPane.showMessageDialog(null, "로그인 실패", "로그인 확인", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "비밀번호가 다릅니다.", "로그인 확인", JOptionPane.ERROR_MESSAGE);
 						}
 					}
-					
-					
+					else {
+						JOptionPane.showMessageDialog(null, "아이디가 없습니다.", "로그인 확인", JOptionPane.ERROR_MESSAGE);
+					}
 				}catch(Exception e1) {
 					System.out.println("데이터 조회 실패 이유 : " + e1.toString());
 					JOptionPane.showMessageDialog(null, "로그인 실패", "로그인 확인", JOptionPane.ERROR_MESSAGE);
