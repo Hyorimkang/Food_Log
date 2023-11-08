@@ -2,8 +2,8 @@ package Food_Log;
 
 public class Create_Schema extends Setting {
 	static final String schema_name = "food_log";
-	static boolean schema_exists = false;
-	static final String check_schema = "SELECT SCHEMA_NAME FROM information_schema.SCHEMATA WHERE SCHEMA_NAME = '" + schema_name + "'";
+	private boolean schema_exists = false;
+	private final String check_schema = "SELECT SCHEMA_NAME FROM information_schema.SCHEMATA WHERE SCHEMA_NAME = '" + schema_name + "'";
 
 	Create_Schema() throws Exception {
 		// 스키마 존재 여부 확인

@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.nio.Buffer;
 import java.time.LocalDate;
 
 import javax.swing.ImageIcon;
@@ -145,7 +148,6 @@ public class Review extends JFrame {
 		btn_submit.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 20));
 		btn_submit.setBackground(Color.white);
 		btn_submit.setFocusPainted(false);
-
 		btn_submit.addActionListener(new ActionListener() {
 
 			@Override
@@ -153,16 +155,23 @@ public class Review extends JFrame {
 				// TODO Auto-generated method stub
 				try {
 					new Create_Table_food_list();
-
+					String user_id;
 					String food_name = f_name.getText();
 					String food_place = f_address.getText();
 					String food_time = LocalDate.now().toString();
 					int food_star = star_idx + 1;  // 인덱스 + 1
 					String food_hash = f_tag.getText();
 					String food_write = t_review.getText();
-					String sql = "INSERT INTO " + Setting.db_name + "." + Create_Table_food_list.table_name + "("
-							+ "food_name, food_place, food_time, food_star, food_hash, food_write) values("
-							+ "'" + food_name + "','" + food_place + "','" + food_time + "','" + food_star + "',"
+					String sql;
+					
+					// File에 아이디 저장
+					FileReader fr = new FileReader(Login.userInfo);
+					BufferedReader br = new BufferedReader(fr);
+					user_id = br.readLine();
+					
+					sql = "INSERT INTO " + Setting.db_name + "." + Create_Table_food_list.table_name + "("
+							+ "user_id, food_name, food_place, food_time, food_star, food_hash, food_write) values("
+							+ "'" + user_id + "','" + food_name + "','" + food_place + "','" + food_time + "','" + food_star + "',"
 							+ "'" + food_hash + "','" + food_write + "')";
 
 					Setting.stmt.execute(sql);
@@ -174,6 +183,7 @@ public class Review extends JFrame {
 					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(null, "리뷰 작성 실패", "메세지", JOptionPane.ERROR_MESSAGE);
 					System.out.println("리뷰 작성 실패 : " + e1.toString());
+					e1.printStackTrace();
 				}
 			}
 		});
