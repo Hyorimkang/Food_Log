@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
 
@@ -30,12 +32,15 @@ public class List extends JFrame{
 	private static JList<String> list;
 	private static JScrollPane scrollPane;
 	private static Vector<String> data = new Vector<String>();
-
-	public static void main(String[] args) {
-		new List();
-	}
+	private Setting s;
 
 	public List() {
+		try {
+		s = new Setting();
+		}catch(Exception e) {
+			System.out.println(e.toString());
+		}
+		
 		setTitle("맛집 리스트");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(900,600);
@@ -100,19 +105,21 @@ public class List extends JFrame{
 
 		btn_set();
 	}//main
-
+	
 	public void list_DB() {
 		try {
-			Setting s = new Setting();
 			String user_id;
 			FileReader fr = new FileReader(Login.userInfo);  // 유저 정보 받아오기
 			BufferedReader br = new BufferedReader(fr);
 			String sql;
+			PreparedStatement ps;
 			ResultSet rs;
 			user_id = br.readLine();
 			
 			sql = "SELECT food_name, food_star FROM food_log.food_list WHERE user_id = '" + user_id + "'";
-			rs = s.stmt.executeQuery(sql);
+			ps = s.conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
 			while(rs.next()) {
 				data.add(rs.getString("food_name") + "  (★" + rs.getString("food_star") + ")");
 			}
@@ -142,6 +149,7 @@ public class List extends JFrame{
 				// TODO Auto-generated method stub
 				new Select();
 				setVisible(false);
+				data.clear();
 			}
 		});
 	}//btn_set
