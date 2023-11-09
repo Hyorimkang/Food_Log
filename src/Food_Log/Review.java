@@ -28,6 +28,7 @@ public class Review extends JFrame {
 	private JTextField f_name;
 	private JLabel star;
 	private JLabel l_star;
+	JLabel l_map;
 	private JLabel address;
 	JTextField f_address;
 	private JButton btn_address;
@@ -123,7 +124,17 @@ public class Review extends JFrame {
 		btn_address.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 20));
 		btn_address.setBackground(Color.white);
 		btn_address.setFocusPainted(false);
-		btn_address.addActionListener(new NaverMap(null));
+		btn_address.addActionListener(new NaverMap(this));
+//		btn_address.addActionListener(new ActionListener() {
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				// TODO Auto-generated method stub
+//				Review_map rm = new Review_map();
+//				rm.initGUI();
+//			}
+//		});
+		
 
 		//태그
 		tag = new JLabel("태그");
@@ -211,7 +222,7 @@ public class Review extends JFrame {
 		map.setBounds(0,0,350,600);
 
 
-		JLabel l_map = new JLabel("지도");
+		l_map = new JLabel("");
 		l_map.setBounds(0, 0, 100, 50);
 		l_map.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 20));
 		map.add(l_map);
