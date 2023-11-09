@@ -18,7 +18,7 @@ public class Main extends JFrame {
 		setLocationRelativeTo(null);
 		setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		// 배경화면
 		JLabel main_img = new JLabel(new ImageIcon("./img/Main_Page.png")); 
 		main_img.setBounds(0, 0, 900, 600);
@@ -27,15 +27,15 @@ public class Main extends JFrame {
 		JLabel title = new JLabel("맛집의 지도");
 		title.setFont(main_font);
 		title.setBounds(150, 110, 550, 120);
-		
+
 		LogIn();
 		SignUp();
 		add(title);
 		add(main_img);
-		
+
 		setVisible(true);
 	}
-	
+
 	// 로그인 버튼
 	public void LogIn() {
 		JButton login_btn = new JButton(LogIn);
@@ -44,7 +44,7 @@ public class Main extends JFrame {
 		login_btn.setBackground(Color.white);
 		login_btn.setFocusPainted(false);
 		login_btn.setBorderPainted(false);
-		
+
 		// 로그인 화면으로 이동
 		login_btn.addActionListener(new ActionListener() {
 			@Override
@@ -57,10 +57,10 @@ public class Main extends JFrame {
 				}
 			}
 		});
-		
+
 		add(login_btn);
 	}
-	
+
 	// 회원가입 버튼
 	public void SignUp() {
 		JButton signup_btn = new JButton(SignUp);
@@ -82,10 +82,10 @@ public class Main extends JFrame {
 				}
 			}
 		});
-		
+
 		add(signup_btn);		
 	}
-	
+
 	public static void main(String[] args) {
 		new Main();
 	}

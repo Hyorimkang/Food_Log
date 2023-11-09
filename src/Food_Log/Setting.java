@@ -13,7 +13,7 @@ public class Setting {
 	Setting() throws Exception {
 		conn = DriverManager.getConnection(url, user, password);
 		stmt = conn.createStatement();
-		
+
 		System.out.println("연결 성공");
 	}
 }
