@@ -21,14 +21,14 @@ import org.json.JSONTokener;
 
 public class NaverMap implements ActionListener {
 
-	//	Review review;
-	//	public NaverMap(Review naverMap) {
-	//		this.review = naverMap;
-	//	}
-	Review_map review;
-	public NaverMap(Review_map naverMap) {
-		this.review = naverMap;
-	}
+		Review review;
+		public NaverMap(Review naverMap) {
+			this.review = naverMap;
+		}
+//	Review_map review;
+//	public NaverMap(Review_map naverMap) {
+//		this.review = naverMap;
+//	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -90,7 +90,7 @@ public class NaverMap implements ActionListener {
 		try {
 			String pos = URLEncoder.encode(vo.getX() + " " + vo.getY(), "UTF-8");
 			URL_STATICMAP += "center=" + vo.getX() + "," + vo.getY();
-			URL_STATICMAP += "&level=16&w=700&h=500";
+			URL_STATICMAP += "&level=16&w=350&h=600"; //사이즈
 			URL_STATICMAP += "&markers=type:t|size:mid|pos:" + pos + "|label:" + URLEncoder.encode(vo.getRoadAddress(), "UTF-8");
 
 			URL url = new URL(URL_STATICMAP);
@@ -111,7 +111,8 @@ public class NaverMap implements ActionListener {
 
 				// 랜덤 파일명으로 파일 생성
 				String tempName = Long.valueOf(new Date().getTime()).toString();
-				File file = new File(tempName + ".jpg");	// 파일 생성.
+				//String filePath = "./map_img/"+tempName+".jpg";//파일 경로 설정
+				File file = new File(tempName+".jpg");	// 파일 생성.
 
 				file.createNewFile();
 
@@ -123,11 +124,7 @@ public class NaverMap implements ActionListener {
 
 				is.close();
 				ImageIcon img = new ImageIcon(file.getName());
-				review.imageLabel.setIcon(img);
-				review.resAddress.setText(vo.getRoadAddress());
-				review.jibunAddress.setText(vo.getJibunAddress());
-				review.resX.setText(vo.getX());
-				review.resY.setText(vo.getY());
+				review.l_map.setIcon(img);
 
 			} else {
 				System.out.println(responseCode);
