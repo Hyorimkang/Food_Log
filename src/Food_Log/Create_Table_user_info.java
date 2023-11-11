@@ -13,9 +13,9 @@ public class Create_Table_user_info extends Create_Schema {
         if (!resultSet.next()) {
 			stmt.execute("CREATE TABLE `" + schema_name + "`.`" + table_name + "` (\r\n"
 					+ "`no` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, \r\n"
-					+ "`user_name` VARCHAR(20), \r\n"
-					+ "`user_id` VARCHAR(20), \r\n"
-					+ "`user_pw` VARCHAR(45));");
+					+ "`user_name` VARCHAR(20) NOT NULL, \r\n"
+					+ "`user_id` VARCHAR(20) NOT NULL, \r\n"
+					+ "`user_pw` VARCHAR(45) NOT NULL);");
 
 			System.out.println("user_info 테이블 생성");
 		}

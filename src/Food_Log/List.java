@@ -106,6 +106,7 @@ public class List extends JFrame{
 		btn_set();
 	}//main
 	
+	// 맛집 정보 받아오기
 	public void list_DB() {
 		try {
 			String user_id;
@@ -137,7 +138,7 @@ public class List extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// 삭제하는 쿼리문
-
+				
 			}
 		});    	
 
