@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
@@ -21,6 +20,8 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class List extends JFrame{
 	private static JPanel panel;
@@ -32,15 +33,16 @@ public class List extends JFrame{
 	private static JList<String> list;
 	private static JScrollPane scrollPane;
 	private static Vector<String> data = new Vector<String>();
+	private static int data_idx = -1;
 	private Setting s;
 
 	public List() {
 		try {
-		s = new Setting();
+			s = new Setting();
 		}catch(Exception e) {
 			System.out.println(e.toString());
 		}
-		
+
 		setTitle("맛집 리스트");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(900,600);
@@ -78,10 +80,8 @@ public class List extends JFrame{
 		list_DB();
 
 		// JList 생성
-		list = new JList<>(data);
-		// 칸 간격 조정
-		list.setFixedCellHeight(40);
-		list.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 20));
+		create_list();
+
 		// 위치 조정
 		panel.setBorder(new EmptyBorder(50, 0, 70, 0));
 
@@ -105,8 +105,35 @@ public class List extends JFrame{
 
 		btn_set();
 	}//main
-	
-	// 맛집 정보 받아오기
+
+	// 리스트 생성 메소드
+	public void create_list() {
+		list = new JList<>(data);
+		// 칸 간격 조정
+		list.setFixedCellHeight(40);
+		list.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 20));
+
+		list.addListSelectionListener(new ListSelectionListener() {  // 리스트 선택 이벤트
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				// TODO Auto-generated method stub
+				if (!e.getValueIsAdjusting()) {
+					data_idx = list.getSelectedIndex() + 1;  // 리스트 인덱스 + 1 <- DB에서 정보를 불러들이기 위함
+					create_page();
+				}
+			}
+		});
+	}
+
+	public void create_page() {
+		JFrame food_page = new JFrame();
+		food_page.setTitle("맛집 정보");
+		food_page.setSize(700, 400);
+
+		food_page.setVisible(true);
+	}
+
+	// 맛집 정보 받아오기 메소드
 	public void list_DB() {
 		try {
 			String user_id;
@@ -116,16 +143,15 @@ public class List extends JFrame{
 			PreparedStatement ps;
 			ResultSet rs;
 			user_id = br.readLine();
-			
+
 			sql = "SELECT food_name, food_star FROM food_log.food_list WHERE user_id = '" + user_id + "'";
 			ps = s.conn.prepareStatement(sql);
 			rs = ps.executeQuery();
-			
 			while(rs.next()) {
 				data.add(rs.getString("food_name") + "  (★" + rs.getString("food_star") + ")");
 			}
 			System.out.println("DB 호출 성공");
-			
+
 		}catch(Exception e) {
 			System.out.println("DB 호출 실패 : " + e.toString());
 		}
@@ -138,7 +164,7 @@ public class List extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// 삭제하는 쿼리문
-				
+
 			}
 		});    	
 
@@ -150,8 +176,17 @@ public class List extends JFrame{
 				// TODO Auto-generated method stub
 				new Select();
 				setVisible(false);
-				data.clear();
+				data.clear();  // 리스트 보기 재클릭시 생기는 중복 리스트 버그 방지
 			}
 		});
 	}//btn_set
+	
+	public static void main(String[] args) {
+		try {
+			new List();
+		}
+		catch(Exception e) {
+			System.out.println(e.toString());
+		}
+	}
 }
