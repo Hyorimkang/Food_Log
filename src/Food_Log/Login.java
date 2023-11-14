@@ -108,6 +108,8 @@ public class Login extends JFrame{
 					if(rs.next()) {
 						if(rs.getString(1).equals(u_pw)) {
 							JOptionPane.showMessageDialog(null, "로그인 성공", "로그인 확인", JOptionPane.INFORMATION_MESSAGE);
+							Loading l = new Loading();
+							l.Loading();
 							createFile(u_id);
 							new Select();
 							setVisible(false);
