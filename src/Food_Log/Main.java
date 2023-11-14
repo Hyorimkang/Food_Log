@@ -11,6 +11,7 @@ public class Main extends JFrame {
 	static ImageIcon LogIn = new ImageIcon("./img/Main_LoginBtn.png");
 	static ImageIcon SignUp = new ImageIcon("./img/Main_SignupBtn.png");
 	public static Font main_font = new Font("땅스부대찌개 Bold", Font.BOLD, 95);
+	
 	Main() {
 		setTitle("맛집의 지도");
 		setSize(900, 600);
