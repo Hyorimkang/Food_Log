@@ -33,7 +33,7 @@ public class Loading extends JFrame{
 		
 		panel = new JPanel();
 		panel.setLayout(new BorderLayout());
-		panel.setBounds(300,200, 600, 200);
+		panel.setBounds(300,200, 300, 200);
 		panel.setBackground(Color.white);
 		panel.setBorder(new EmptyBorder(230, 0, 200, 0));
 		
