@@ -19,7 +19,7 @@ public class Loading extends JFrame{
 	private JPanel bg;
 	private JProgressBar loadingbar;
 	
-	Loading(){
+	void Loading(){
 		setTitle("맛집의 지도");
 		setSize(900, 600);
 		setResizable(false);
