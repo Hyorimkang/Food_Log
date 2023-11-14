@@ -39,8 +39,13 @@ public class Review extends JFrame {
 	private JButton btn_submit;
 
 	private int star_idx;
+	private FileReader fr;
+	private BufferedReader br;
+
+	private String user_id;
 
 	Review() {
+		try {
 		setTitle("리뷰 작성하기");
 		setSize(900, 600);
 		setResizable(false);
@@ -49,13 +54,21 @@ public class Review extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setBackground(Color.white);
 
+		// File에 아이디 저장
+		fr = new FileReader(Login.userInfo);
+		br = new BufferedReader(fr);
+		user_id = br.readLine();
+
 		btnBack();
 		review();
 		map();
 
 		setVisible(true);
+		}catch(Exception e) {
+			System.out.println(e.toString());
+		}
 	}
-
+	
 	public void review() {
 		review = new JPanel();
 		review.setBounds(350, 0, 550, 600);
@@ -101,7 +114,7 @@ public class Review extends JFrame {
 					}
 
 					// 선택한 별점 버튼까지 노란색으로
-					for (int j = 0; j <= idx ; j++) {
+					for (int j = 0; j <= idx; j++) {
 						stars[j].setBackground(Color.yellow);
 						star_idx = idx;
 					}
@@ -125,16 +138,16 @@ public class Review extends JFrame {
 		btn_address.setBackground(Color.white);
 		btn_address.setFocusPainted(false);
 		btn_address.addActionListener(new NaverMap(this));
-//		btn_address.addActionListener(new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				// TODO Auto-generated method stub
-//				Review_map rm = new Review_map();
-//				rm.initGUI();
-//			}
-//		});
-		
+		//		btn_address.addActionListener(new ActionListener() {
+		//			
+		//			@Override
+		//			public void actionPerformed(ActionEvent e) {
+		//				// TODO Auto-generated method stub
+		//				Review_map rm = new Review_map();
+		//				rm.initGUI();
+		//			}
+		//		});
+
 
 		//태그
 		tag = new JLabel("태그");
@@ -166,7 +179,7 @@ public class Review extends JFrame {
 				// TODO Auto-generated method stub
 				try {
 					new Create_Table_food_list();
-					String user_id;
+					
 					String food_name = f_name.getText();
 					String food_place = f_address.getText();
 					String food_time = LocalDate.now().toString();
@@ -174,15 +187,10 @@ public class Review extends JFrame {
 					String food_hash = f_tag.getText();
 					String food_write = t_review.getText();
 					String sql;
-					
-					// File에 아이디 저장
-					FileReader fr = new FileReader(Login.userInfo);
-					BufferedReader br = new BufferedReader(fr);
-					user_id = br.readLine();
-					
-					sql = "INSERT INTO " + Setting.db_name + "." + Create_Table_food_list.table_name + "("
-							+ "user_id, food_name, food_place, food_time, food_star, food_hash, food_write) values("
-							+ "'" + user_id + "','" + food_name + "','" + food_place + "','" + food_time + "','" + food_star + "',"
+
+					sql = "INSERT INTO " + Setting.db_name + "." + user_id + "("
+							+ "food_name, food_place, food_time, food_star, food_hash, food_write) values("
+							+ "'" + food_name + "','" + food_place + "','" + food_time + "','" + food_star + "',"
 							+ "'" + food_hash + "','" + food_write + "')";
 
 					Setting.stmt.execute(sql);
@@ -220,7 +228,6 @@ public class Review extends JFrame {
 	public void map() {
 		JPanel map = new JPanel();
 		map.setBounds(0,0,350,600);
-
 
 		l_map = new JLabel("");
 		l_map.setBounds(0, 0, 100, 50);

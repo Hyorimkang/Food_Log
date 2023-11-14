@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
@@ -35,6 +36,11 @@ public class List extends JFrame{
 	private static Vector<String> data = new Vector<String>();
 	private static int data_idx = -1;
 	private Setting s;
+	String user_id;
+	private FileReader fr;  // 유저 정보 받아오기
+	BufferedReader br;
+	PreparedStatement ps;
+	ResultSet rs;
 
 	public List() {
 		try {
@@ -48,6 +54,13 @@ public class List extends JFrame{
 		setSize(900,600);
 		setLocationRelativeTo(null);
 
+		try {
+			fr = new FileReader(Login.userInfo);
+			br = new BufferedReader(fr);
+			user_id = br.readLine();
+		}catch(Exception e) {
+			System.out.println(e.toString());
+		}
 		// 배경 패널
 		panel = new JPanel();
 		panel.setBounds(0, 0, 900, 600);
@@ -118,31 +131,20 @@ public class List extends JFrame{
 			public void valueChanged(ListSelectionEvent e) {
 				// TODO Auto-generated method stub
 				if (!e.getValueIsAdjusting()) {
-					data_idx = list.getSelectedIndex() + 1;  // 리스트 인덱스 + 1 <- DB에서 정보를 불러들이기 위함
-					create_page();
+					create_food_page();
 				}
 			}
 		});
 	}
 
-	public void create_page() {
-		JFrame food_page = new JFrame();
-		food_page.setTitle("맛집 정보");
-		food_page.setSize(700, 400);
-
-		food_page.setVisible(true);
+	public void create_food_page() {
+		
 	}
 
 	// 맛집 정보 받아오기 메소드
 	public void list_DB() {
 		try {
-			String user_id;
-			FileReader fr = new FileReader(Login.userInfo);  // 유저 정보 받아오기
-			BufferedReader br = new BufferedReader(fr);
 			String sql;
-			PreparedStatement ps;
-			ResultSet rs;
-			user_id = br.readLine();
 
 			sql = "SELECT food_name, food_star FROM food_log.food_list WHERE user_id = '" + user_id + "'";
 			ps = s.conn.prepareStatement(sql);
@@ -164,7 +166,7 @@ public class List extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// 삭제하는 쿼리문
-
+				
 			}
 		});    	
 
@@ -180,7 +182,7 @@ public class List extends JFrame{
 			}
 		});
 	}//btn_set
-	
+
 	public static void main(String[] args) {
 		try {
 			new List();

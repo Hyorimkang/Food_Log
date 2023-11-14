@@ -1,19 +1,27 @@
 package Food_Log;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.sql.ResultSet;
 
 public class Create_Table_food_list extends Create_Schema {
-	public static final String table_name = "food_list";
-
-	Create_Table_food_list() throws Exception {
+	private FileReader fr;
+	private BufferedReader br;
+	private String user_id;
+	
+	public Create_Table_food_list() throws Exception {
+		// File에 아이디 저장
+		fr = new FileReader(Login.userInfo);
+		br = new BufferedReader(fr);
+		user_id = br.readLine();
+		
 		// user_info 테이블 존재 여부 확인
-		String sql = "SHOW TABLES LIKE '" + table_name + "'";
-		ResultSet resultSet = stmt.executeQuery(sql);
+		String sql = "SHOW TABLES LIKE '" + user_id + "'";
+		ResultSet rs = stmt.executeQuery(sql);
 
-		if (!resultSet.next()) {
-			stmt.execute("CREATE TABLE `" + schema_name + "`.`" + table_name + "` (\r\n"
+		if (!rs.next()) {
+			stmt.execute("CREATE TABLE `" + schema_name + "`.`" + user_id + "` (\r\n"
 					+ "`no` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, \r\n"
-					+ "`user_id` VARCHAR(20) NOT NULL, \r\n"
 					+ "`food_name` VARCHAR(50) NOT NULL, \r\n"
 					+ "`food_place` VARCHAR(70) NOT NULL, \r\n"
 					+ "`food_time` DATE NOT NULL, \r\n"

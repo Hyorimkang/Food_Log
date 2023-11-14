@@ -37,7 +37,7 @@ public class SignUp extends JFrame {
 
 	private ImageIcon Back = new ImageIcon("./img/Icon_Back.png");
 
-	private Setting s;
+	private Setting s = new Setting();
 
 	public static void main(String[] args) {
 		try {
@@ -126,14 +126,9 @@ public class SignUp extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Create_Table_user_info info = new Create_Table_user_info();
 					String u_id = userId.getText();
-					String sql = "SELECT EXISTS (SELECT * FROM " + info.schema_name + "." + info.table_name
-							+ " WHERE user_id = ?)";
-					PreparedStatement ps = info.conn.prepareStatement(sql);
-					ps.setString(1, u_id);
-
-					ResultSet rs = ps.executeQuery();
+					String sql = "SHOW TABLES LIKE '" + u_id + "'";
+					ResultSet rs = s.stmt.executeQuery(sql);
 
 					if(rs.next()) {
 						int exists = rs.getInt(1);
