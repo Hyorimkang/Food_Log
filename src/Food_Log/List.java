@@ -6,6 +6,10 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
@@ -16,6 +20,8 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class List extends JFrame{
 	private static JPanel panel;
@@ -26,29 +32,34 @@ public class List extends JFrame{
 	private static JLabel title;
 	private static JList<String> list;
 	private static JScrollPane scrollPane;
-	
-	public static void main(String[] args) {
-		new List();
-	}
-	
+	private static Vector<String> data = new Vector<String>();
+	private static int data_idx = -1;
+	private Setting s;
+
 	public List() {
+		try {
+			s = new Setting();
+		}catch(Exception e) {
+			System.out.println(e.toString());
+		}
+
 		setTitle("맛집 리스트");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(900,600);
-        setLocationRelativeTo(null);
-        
-        // 배경 패널
-        panel = new JPanel();
-        panel.setBounds(0, 0, 900, 600);
-        panel.setBackground(Color.white);
-        
-        //삭제버튼
-        btnDelete = new JButton("삭제");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(900,600);
+		setLocationRelativeTo(null);
+
+		// 배경 패널
+		panel = new JPanel();
+		panel.setBounds(0, 0, 900, 600);
+		panel.setBackground(Color.white);
+
+		//삭제버튼
+		btnDelete = new JButton("삭제");
 		btnDelete.setBounds(330,490,200,50);
 		btnDelete.setBackground(Color.white);
 		btnDelete.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
 		add(btnDelete);
-		
+
 		//뒤로가기
 		btnBack = new JButton(Back);
 		btnBack.setBounds(15, 15, 50, 50);
@@ -57,68 +68,125 @@ public class List extends JFrame{
 		btnBack.setBorderPainted(false);
 		add(btnBack);
 
-        // 제목을 담을 JLabel 생성
-        title = new JLabel("나의 맛집 리스트");
-        title.setHorizontalAlignment(JLabel.CENTER);
-        title.setFont(new Font("땅스부대찌개 Bold", Font.PLAIN, 50));
-        title.setBackground(Color.white);
-        title.setOpaque(true); //투명하게
-        title.setBounds(250, 30, 500, 100);
+		// 제목을 담을 JLabel 생성
+		title = new JLabel("나의 맛집 리스트");
+		title.setHorizontalAlignment(JLabel.CENTER);
+		title.setFont(new Font("땅스부대찌개 Bold", Font.PLAIN, 50));
+		title.setBackground(Color.white);
+		title.setOpaque(true); //투명하게
+		title.setBounds(250, 30, 500, 100);
 
-        // JList에 표시할 데이터 생성
-        Vector<String> data = new Vector<String>();
-        for (int i = 0; i < 100; i++) {
-            data.add("test"+i);
-        }
+		// JList에 표시할 데이터 생성
+		list_DB();
 
-        // JList 생성
-        list = new JList<>(data);
-        // 칸 간격 조정
-        list.setFixedCellHeight(40);
-        // 위치 조정
-        panel.setBorder(new EmptyBorder(50, 0, 70, 0));
+		// JList 생성
+		create_list();
 
-        // JScrollPane 생성 및 JList를 JScrollPane에 추가
-        scrollPane = new JScrollPane(list);
-        // 크기 조정
-        scrollPane.setPreferredSize(new Dimension(550,350));
-        
-        // JPanel을 생성하여 제목과 JScrollPane를 추가
-        p_list = new JPanel(new BorderLayout());
-        
-        p_list.add(title, BorderLayout.NORTH);
-        p_list.add(scrollPane, BorderLayout.CENTER);
+		// 위치 조정
+		panel.setBorder(new EmptyBorder(50, 0, 70, 0));
 
-        // 화면 추가
-        panel.add(p_list);
-        add(panel);
-        
-        // 프레임을 표시
-        setVisible(true);
-        
-        btn_set();
-    }//main
-    
-    public void btn_set() {
-    	//삭제
-    	btnDelete.addActionListener(new ActionListener() {
-			
+		// JScrollPane 생성 및 JList를 JScrollPane에 추가
+		scrollPane = new JScrollPane(list);
+		// 크기 조정
+		scrollPane.setPreferredSize(new Dimension(550,350));
+
+		// JPanel을 생성하여 제목과 JScrollPane를 추가
+		p_list = new JPanel(new BorderLayout());
+
+		p_list.add(title, BorderLayout.NORTH);
+		p_list.add(scrollPane, BorderLayout.CENTER);
+
+		// 화면 추가
+		panel.add(p_list);
+		add(panel);
+
+		// 프레임을 표시
+		setVisible(true);
+
+		btn_set();
+	}//main
+
+	// 리스트 생성 메소드
+	public void create_list() {
+		list = new JList<>(data);
+		// 칸 간격 조정
+		list.setFixedCellHeight(40);
+		list.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 20));
+
+		list.addListSelectionListener(new ListSelectionListener() {  // 리스트 선택 이벤트
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				// TODO Auto-generated method stub
+				if (!e.getValueIsAdjusting()) {
+					data_idx = list.getSelectedIndex() + 1;  // 리스트 인덱스 + 1 <- DB에서 정보를 불러들이기 위함
+					create_page();
+				}
+			}
+		});
+	}
+
+	public void create_page() {
+		JFrame food_page = new JFrame();
+		food_page.setTitle("맛집 정보");
+		food_page.setSize(700, 400);
+
+		food_page.setVisible(true);
+	}
+
+	// 맛집 정보 받아오기 메소드
+	public void list_DB() {
+		try {
+			String user_id;
+			FileReader fr = new FileReader(Login.userInfo);  // 유저 정보 받아오기
+			BufferedReader br = new BufferedReader(fr);
+			String sql;
+			PreparedStatement ps;
+			ResultSet rs;
+			user_id = br.readLine();
+
+			sql = "SELECT food_name, food_star FROM food_log.food_list WHERE user_id = '" + user_id + "'";
+			ps = s.conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				data.add(rs.getString("food_name") + "  (★" + rs.getString("food_star") + ")");
+			}
+			System.out.println("DB 호출 성공");
+
+		}catch(Exception e) {
+			System.out.println("DB 호출 실패 : " + e.toString());
+		}
+	}
+
+	public void btn_set() {
+		//삭제
+		btnDelete.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// 삭제하는 쿼리문
-				
+
 			}
 		});    	
-    	
-    	//뒤로가기
-    	btnBack.addActionListener(new ActionListener() {
-			
+
+		//뒤로가기
+		btnBack.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				new Select();
 				setVisible(false);
+				data.clear();  // 리스트 보기 재클릭시 생기는 중복 리스트 버그 방지
 			}
 		});
-    }//btn_set
+	}//btn_set
+	
+	public static void main(String[] args) {
+		try {
+			new List();
+		}
+		catch(Exception e) {
+			System.out.println(e.toString());
+		}
+	}
 }
