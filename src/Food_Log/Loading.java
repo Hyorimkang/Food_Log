@@ -25,7 +25,6 @@ public class Loading extends JFrame{
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setLayout(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		bg = new JPanel();
 		bg.setBounds(0, 0, 900, 600);

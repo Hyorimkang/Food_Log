@@ -55,7 +55,7 @@ public class Review extends JFrame {
 		getContentPane().setBackground(Color.white);
 
 		// File에 아이디 저장
-		fr = new FileReader(Login.userInfo);
+		fr = new FileReader(Update_user_info.userInfo);
 		br = new BufferedReader(fr);
 		user_id = br.readLine();
 
