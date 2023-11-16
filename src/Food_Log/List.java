@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -47,6 +48,7 @@ public class List extends JFrame{
 		setTitle("맛집 리스트");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(900,600);
+		setResizable(false);
 		setLocationRelativeTo(null);
 
 		// 배경 패널
@@ -130,15 +132,61 @@ public class List extends JFrame{
 	public void create_food_page() {
 		try {
 			List_data l = new List_data();
-			String food_name = l.getFoodName();
-			String food_place = l.getFoodPlace();
-			String food_time = l.getFoodTime();
-			int food_star = l.getFoodStar();
-			String food_hash = l.getFoodHash();
-			String food_write = l.getFoodWrite();
 			String sql = "SELECT * FROM food_log.`" + l.user_id + "` WHERE food_no = " + data_idx;
 			new List_data(sql);
 			if(l.rs.next()) {
+				String food_name = l.getFoodName();
+				String food_place = l.getFoodPlace();
+				String food_time = l.getFoodTime();
+				String food_star = String.valueOf(l.getFoodStar());
+				String food_hash = l.getFoodHash();
+				String food_write = l.getFoodWrite();
+				
+				JFrame f_page = new JFrame();
+				JLabel f_name, f_star, f_address;
+				JTextArea f_hash, f_write;
+				f_page.setSize(500, 400);
+				f_page.setResizable(false);
+				f_page.setLocationRelativeTo(null);
+				f_page.setLayout(null);
+				f_page.getContentPane().setBackground(Color.white);
+				
+				// 식당 이름
+				f_name = new JLabel(food_name);
+				f_name.setBounds(0, 10, 485, 50);
+				f_name.setHorizontalAlignment(JLabel.CENTER);  // 가운데 정렬
+				f_name.setFont(new Font("EF_watermelonSalad", Font.BOLD, 25));
+				
+				// 별점
+				f_star = new JLabel("★ (5/" + food_star + ")");
+				f_star.setBounds(10, 50, 100, 50);
+				f_star.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 15));
+				
+				// 해시태그
+				f_hash = new JTextArea(food_hash);
+				f_hash.setBounds(10, 100, 450, 50);
+				f_hash.setEditable(false);  // 수정 불가능하게 설정
+				f_hash.setLineWrap(true);  // 자동 줄 바꿈 설정
+				f_hash.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 20));
+				
+				// 주소
+				f_address = new JLabel("주소: " + food_place);
+				f_address.setBounds(10, 150, 450, 50);
+				f_address.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 20));
+				
+				f_write = new JTextArea("후기: \n" + food_write);
+				f_write.setBounds(10, 230, 450, 300);
+				f_write.setEditable(false);
+				f_write.setLineWrap(true);
+				f_write.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 20));
+				
+				f_page.setVisible(true);
+				
+				f_page.add(f_name);
+				f_page.add(f_star);
+				f_page.add(f_hash);
+				f_page.add(f_address);
+				f_page.add(f_write);
 				
 				l.fr.close();
 				l.br.close();

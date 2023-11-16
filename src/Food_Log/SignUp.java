@@ -50,6 +50,7 @@ public class SignUp extends JFrame {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(900,600);
+		setResizable(false);
 		setTitle("회원가입");
 		setLocationRelativeTo(null);
 
