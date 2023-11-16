@@ -30,7 +30,6 @@ public class Login extends JFrame{
 	private JButton btnBack;
 
 	private ImageIcon Back = new ImageIcon("./img/Icon_Back.png");
-	static final String userInfo = "./user_info.txt";
 
 	public static void main(String[] args) throws Exception {
 		new Login();
@@ -60,20 +59,6 @@ public class Login extends JFrame{
 		setVisible(true);
 	}
 
-	// 유저 정보 저장 파일 생성
-	public static void createFile(String u_id) {
-		try {
-			File file = new File(userInfo);
-			FileWriter fw = new FileWriter(userInfo);
-			fw.write(u_id);
-			fw.close();
-			System.out.println("파일 생성 성공");
-		}catch(Exception e) {
-			System.out.println("파일 생성 실패");
-			System.out.println(e.toString());
-		}
-
-	}
 
 	public void lblLogin() {
 		lblLogin = new JLabel("LOGIN");
@@ -102,15 +87,14 @@ public class Login extends JFrame{
 				String u_pw = userPw.getText();
 
 				try {
-					Setting s = new Setting();
 					String sql = "SELECT user_pw FROM user_info WHERE user_id = " + "'" + u_id + "'";
-					ResultSet rs = s.stmt.executeQuery(sql);
+					ResultSet rs = Setting.stmt.executeQuery(sql);
 					if(rs.next()) {
 						if(rs.getString(1).equals(u_pw)) {
 							JOptionPane.showMessageDialog(null, "로그인 성공", "로그인 확인", JOptionPane.INFORMATION_MESSAGE);
 							Loading l = new Loading();
 							l.Loading();
-							createFile(u_id);
+							new Update_user_info(u_id);
 							new Select();
 							setVisible(false);
 						}

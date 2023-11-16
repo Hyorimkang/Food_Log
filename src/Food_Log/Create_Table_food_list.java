@@ -11,7 +11,7 @@ public class Create_Table_food_list extends Create_Schema {
 	
 	public Create_Table_food_list() throws Exception {
 		// File에 아이디 저장
-		fr = new FileReader(Login.userInfo);
+		fr = new FileReader(Update_user_info.userInfo);
 		br = new BufferedReader(fr);
 		user_id = br.readLine();
 		
@@ -21,7 +21,7 @@ public class Create_Table_food_list extends Create_Schema {
 
 		if (!rs.next()) {
 			stmt.execute("CREATE TABLE `" + schema_name + "`.`" + user_id + "` (\r\n"
-					+ "`no` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, \r\n"
+					+ "`food_no` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, \r\n"
 					+ "`food_name` VARCHAR(50) NOT NULL, \r\n"
 					+ "`food_place` VARCHAR(70) NOT NULL, \r\n"
 					+ "`food_time` DATE NOT NULL, \r\n"

@@ -36,11 +36,6 @@ public class List extends JFrame{
 	private static Vector<String> data = new Vector<String>();
 	private static int data_idx = -1;
 	private Setting s;
-	String user_id;
-	private FileReader fr;  // 유저 정보 받아오기
-	BufferedReader br;
-	PreparedStatement ps;
-	ResultSet rs;
 
 	public List() {
 		try {
@@ -54,13 +49,6 @@ public class List extends JFrame{
 		setSize(900,600);
 		setLocationRelativeTo(null);
 
-		try {
-			fr = new FileReader(Login.userInfo);
-			br = new BufferedReader(fr);
-			user_id = br.readLine();
-		}catch(Exception e) {
-			System.out.println(e.toString());
-		}
 		// 배경 패널
 		panel = new JPanel();
 		panel.setBounds(0, 0, 900, 600);
@@ -131,31 +119,50 @@ public class List extends JFrame{
 			public void valueChanged(ListSelectionEvent e) {
 				// TODO Auto-generated method stub
 				if (!e.getValueIsAdjusting()) {
+					data_idx = list.getSelectedIndex() + 1;
 					create_food_page();
 				}
 			}
 		});
 	}
 
+	// 맛집 정보
 	public void create_food_page() {
-		
+		try {
+			List_data l = new List_data();
+			String food_name = l.getFoodName();
+			String food_place = l.getFoodPlace();
+			String food_time = l.getFoodTime();
+			int food_star = l.getFoodStar();
+			String food_hash = l.getFoodHash();
+			String food_write = l.getFoodWrite();
+			String sql = "SELECT * FROM food_log.`" + l.user_id + "` WHERE food_no = " + data_idx;
+			new List_data(sql);
+			if(l.rs.next()) {
+				
+				l.fr.close();
+				l.br.close();
+			} else {
+				System.out.println("해당 맛집 정보를 찾을 수 없습니다.");
+			}
+		}catch(Exception e) {
+			System.out.println("페이지 호출 실패: " + e.toString());
+			e.printStackTrace();
+		}
 	}
 
-	// 맛집 정보 받아오기 메소드
+	// 맛집 정보 리스트 불러오기
 	public void list_DB() {
 		try {
-			String sql;
-
-			sql = "SELECT food_name, food_star FROM food_log.food_list WHERE user_id = '" + user_id + "'";
-			ps = s.conn.prepareStatement(sql);
-			rs = ps.executeQuery();
-			while(rs.next()) {
-				data.add(rs.getString("food_name") + "  (★" + rs.getString("food_star") + ")");
+			List_data l = new List_data();
+			String sql = "SELECT * FROM food_log." + l.user_id;
+			while(l.rs.next()) {
+				data.add(l.getFoodName() + "  (★" + l.getFoodStar() + ")");
 			}
 			System.out.println("DB 호출 성공");
 
 		}catch(Exception e) {
-			System.out.println("DB 호출 실패 : " + e.toString());
+			System.out.println("DB 호출 실패: " + e.toString());
 		}
 	}
 
@@ -166,7 +173,7 @@ public class List extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// 삭제하는 쿼리문
-				
+
 			}
 		});    	
 
