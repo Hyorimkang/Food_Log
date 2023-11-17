@@ -51,6 +51,16 @@ public class List_data {
 			e.printStackTrace();
 		}
 	}
+	public static void deleteData(String sql) throws Exception {
+		try {
+			Setting s = new Setting();
+			s.stmt.execute(sql);
+			System.out.println("성공");
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("실패");
+		}
+	}
 	public static String getFoodName() throws Exception {
 		food_name = rs.getString("food_name");
 		return food_name;

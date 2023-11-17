@@ -185,15 +185,22 @@ public class Review extends JFrame {
 					int food_star = star_idx + 1;  // 인덱스 + 1
 					String food_hash = f_tag.getText();
 					String food_write = t_review.getText();
-					String sql;
+					String sql, re, re1, re2;
 
 					sql = "INSERT INTO " + Setting.db_name + "." + user_id + "("
 							+ "food_name, food_place, food_time, food_star, food_hash, food_write) values("
 							+ "'" + food_name + "','" + food_place + "','" + food_time + "','" + food_star + "',"
 							+ "'" + food_hash + "','" + food_write + "')";
 
+					// auto_increment 재정렬 명령어
+					re = "ALTER TABLE food_log." + user_id + " AUTO_INCREMENT = 1";
+					re1 = "SET @COUNT = 0";
+					re2 = "UPDATE food_log." + user_id + " SET food_no = @COUNT:=@COUNT + 1";
+					
+					Setting.stmt.execute(re);
+					Setting.stmt.execute(re1);
+					Setting.stmt.execute(re2);
 					Setting.stmt.execute(sql);
-					System.out.println("리뷰 작성 성공");
 					JOptionPane.showMessageDialog(null, "리뷰 작성 완료", "메세지", JOptionPane.INFORMATION_MESSAGE);
 					new Review();
 					setVisible(false);
