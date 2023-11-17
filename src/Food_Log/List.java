@@ -93,7 +93,7 @@ public class List extends JFrame{
 		// JList에 표시할 데이터 생성
 		list_DB();
 
-		// JList 생성
+		// 리스트 생성
 		create_list();
 
 		// 위치 조정
@@ -122,6 +122,7 @@ public class List extends JFrame{
 
 	// 리스트 생성 메소드
 	public void create_list() {
+		// JList 생성
 		list = new JList<>(data);
 		// 칸 간격 조정
 		list.setFixedCellHeight(40);
@@ -138,7 +139,7 @@ public class List extends JFrame{
 	}
 
 	// 맛집 정보
-	public void create_food_page() {
+	public void create_food_info() {
 		try {
 			List_data l = new List_data();
 			String sql = "SELECT * FROM food_log.`" + l.user_id + "` WHERE food_no = " + data_idx;
@@ -154,7 +155,7 @@ public class List extends JFrame{
 				JFrame f_page = new JFrame();
 				JLabel f_name, f_star, f_address;
 				JTextArea f_hash, f_write;
-				f_page.setSize(500, 400);
+				f_page.setSize(500, 450);
 				f_page.setResizable(false);
 				f_page.setLocationRelativeTo(null);
 				f_page.setLayout(null);
@@ -179,11 +180,11 @@ public class List extends JFrame{
 				f_hash.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 20));
 
 				// 주소
-				f_address = new JLabel("주소: " + food_place);
+				f_address = new JLabel("주소 : \n" + food_place);
 				f_address.setBounds(10, 150, 450, 50);
 				f_address.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 20));
 
-				f_write = new JTextArea("후기: \n" + food_write);
+				f_write = new JTextArea("<후기>\n" + food_write);
 				f_write.setBounds(10, 230, 450, 300);
 				f_write.setEditable(false);
 				f_write.setLineWrap(true);
@@ -213,7 +214,6 @@ public class List extends JFrame{
 	public void list_DB() {
 		try {
 			List_data l = new List_data();
-			String sql = "SELECT * FROM food_log." + l.user_id;
 			while(l.rs.next()) {
 				data.add(l.getFoodName() + "  (★" + l.getFoodStar() + ")");
 			}
@@ -230,8 +230,7 @@ public class List extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				create_food_page();
+				create_food_info();
 			}
 		});
 
