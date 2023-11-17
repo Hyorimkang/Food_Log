@@ -46,29 +46,29 @@ public class Review extends JFrame {
 
 	Review() {
 		try {
-		setTitle("리뷰 작성하기");
-		setSize(900, 600);
-		setResizable(false);
-		setLocationRelativeTo(null);
-		setLayout(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setBackground(Color.white);
+			setTitle("리뷰 작성하기");
+			setSize(900, 600);
+			setResizable(false);
+			setLocationRelativeTo(null);
+			setLayout(null);
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			getContentPane().setBackground(Color.white);
 
-		// File에 아이디 저장
-		fr = new FileReader(Update_user_info.userInfo);
-		br = new BufferedReader(fr);
-		user_id = br.readLine();
+			// File에 아이디 저장
+			fr = new FileReader(Update_user_info.userInfo);
+			br = new BufferedReader(fr);
+			user_id = br.readLine();
 
-		btnBack();
-		review();
-		map();
+			btnBack();
+			review();
+			map();
 
-		setVisible(true);
+			setVisible(true);
 		}catch(Exception e) {
 			System.out.println(e.toString());
 		}
 	}
-	
+
 	public void review() {
 		review = new JPanel();
 		review.setBounds(350, 0, 550, 600);
@@ -178,7 +178,7 @@ public class Review extends JFrame {
 				// TODO Auto-generated method stub
 				try {
 					new Create_Table_food_list();
-					
+
 					String food_name = f_name.getText();
 					String food_place = f_address.getText();
 					String food_time = LocalDate.now().toString();
@@ -196,7 +196,7 @@ public class Review extends JFrame {
 					re = "ALTER TABLE food_log." + user_id + " AUTO_INCREMENT = 1";
 					re1 = "SET @COUNT = 0";
 					re2 = "UPDATE food_log." + user_id + " SET food_no = @COUNT:=@COUNT + 1";
-					
+
 					Setting.stmt.execute(re);
 					Setting.stmt.execute(re1);
 					Setting.stmt.execute(re2);

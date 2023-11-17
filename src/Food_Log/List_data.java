@@ -15,6 +15,7 @@ public class List_data {
 	private static int food_star = 0;
 	private static String food_hash = "";
 	private static String food_write = "";
+	private static int food_no = 0;
 	private static String sql = "";
 
 	public static PreparedStatement ps;
@@ -62,7 +63,10 @@ public class List_data {
 			System.out.println("실패");
 		}
 	}
-	
+	public static int getFoodNo() throws Exception {
+		food_no = rs.getInt("food_no");
+		return food_no;
+	}
 	public static String getFoodName() throws Exception {
 		food_name = rs.getString("food_name");
 		return food_name;
