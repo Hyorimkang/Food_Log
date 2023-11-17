@@ -76,14 +76,12 @@ public class Review extends JFrame {
 		review.setBackground(Color.WHITE);
 
 		//식당 이름
-		name = new JLabel("식당 이름 ");
+		name = new JLabel("식당 이름");
 		name.setBounds(10, 20, 300, 50);
 		name.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
 		f_name = new JTextField();
 		f_name.setBounds(130, 20, 400, 45);
 		f_name.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
-
-		//식당 사진
 
 		//식당 별점				
 		star = new JLabel("별점");
@@ -153,7 +151,7 @@ public class Review extends JFrame {
 		tag = new JLabel("태그");
 		tag.setBounds(30, 230, 100, 50);
 		tag.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
-		f_tag = new JTextField();
+		f_tag = new JTextField("#");
 		f_tag.setBounds(130, 230, 400, 45);
 		f_tag.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
 
@@ -162,6 +160,7 @@ public class Review extends JFrame {
 		write.setBounds(30, 290, 100, 50);
 		write.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
 		t_review = new JTextArea();
+		t_review.setLineWrap(true);
 		t_review.setBounds(130, 300, 400, 200);
 		t_review.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 25));
 		t_review.setBorder(new LineBorder(Color.BLACK));
@@ -171,7 +170,7 @@ public class Review extends JFrame {
 		btn_submit.setBounds(130, 510, 250, 40);
 		btn_submit.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 20));
 		btn_submit.setBackground(Color.white);
-		btn_submit.setFocusPainted(false);
+		btn_submit.setFocusPainted(false);  // 자동 줄 바꿈 설정
 		btn_submit.addActionListener(new ActionListener() {
 
 			@Override
@@ -186,15 +185,22 @@ public class Review extends JFrame {
 					int food_star = star_idx + 1;  // 인덱스 + 1
 					String food_hash = f_tag.getText();
 					String food_write = t_review.getText();
-					String sql;
+					String sql, re, re1, re2;
 
 					sql = "INSERT INTO " + Setting.db_name + "." + user_id + "("
 							+ "food_name, food_place, food_time, food_star, food_hash, food_write) values("
 							+ "'" + food_name + "','" + food_place + "','" + food_time + "','" + food_star + "',"
 							+ "'" + food_hash + "','" + food_write + "')";
 
+					// auto_increment 재정렬 명령어
+					re = "ALTER TABLE food_log." + user_id + " AUTO_INCREMENT = 1";
+					re1 = "SET @COUNT = 0";
+					re2 = "UPDATE food_log." + user_id + " SET food_no = @COUNT:=@COUNT + 1";
+					
+					Setting.stmt.execute(re);
+					Setting.stmt.execute(re1);
+					Setting.stmt.execute(re2);
 					Setting.stmt.execute(sql);
-					System.out.println("리뷰 작성 성공");
 					JOptionPane.showMessageDialog(null, "리뷰 작성 완료", "메세지", JOptionPane.INFORMATION_MESSAGE);
 					new Review();
 					setVisible(false);

@@ -40,6 +40,7 @@ public class Login extends JFrame{
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(900,600);
+		setResizable(false);
 		setTitle("로그인");
 		setLocationRelativeTo(null);
 
