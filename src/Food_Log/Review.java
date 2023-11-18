@@ -1,12 +1,12 @@
 package Food_Log;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.nio.Buffer;
 import java.time.LocalDate;
 
 import javax.swing.ImageIcon;
@@ -15,8 +15,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 public class Review extends JFrame {	
@@ -43,6 +45,13 @@ public class Review extends JFrame {
 	private BufferedReader br;
 
 	private String user_id;
+	
+	public JPanel map;
+	private JLabel loading;
+	public static Font main_font = new Font("EF_watermelonSalad", Font.PLAIN, 30);
+	private JPanel panel;
+	private JPanel bg;
+	public JProgressBar loadingbar;
 
 	Review() {
 		try {
@@ -135,16 +144,8 @@ public class Review extends JFrame {
 		btn_address.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 20));
 		btn_address.setBackground(Color.white);
 		btn_address.setFocusPainted(false);
+		btn_address.addActionListener(new Loading(this));
 		btn_address.addActionListener(new NaverMap(this));
-		//		btn_address.addActionListener(new ActionListener() {
-		//			
-		//			@Override
-		//			public void actionPerformed(ActionEvent e) {
-		//				// TODO Auto-generated method stub
-		//				Review_map rm = new Review_map();
-		//				rm.initGUI();
-		//			}
-		//		});
 
 
 		//태그
@@ -218,8 +219,7 @@ public class Review extends JFrame {
 
 		review.add(address);
 		review.add(star);
-		for(int i = 0; i < stars.length; i++)
-			review.add(stars[i]);
+		for(int i = 0; i < stars.length; i++) review.add(stars[i]);
 		review.add(f_address);
 		review.add(btn_address);
 		review.add(tag);
@@ -232,14 +232,29 @@ public class Review extends JFrame {
 
 	//지도
 	public void map() {
-		JPanel map = new JPanel();
-		map.setBounds(0,0,350,600);
-
+		map = new JPanel();
+		map.setBounds(0, 0, 350, 600);
+		map.setBackground(Color.white);
+		
+		panel = new JPanel();
+		panel.setLayout(new BorderLayout());
+		panel.setBounds(0, 0, 350, 600);
+		panel.setBackground(Color.white);
+		panel.setBorder(new EmptyBorder(230, 0, 200, 0));
+		
+		loading = new JLabel("로딩중");
+		loading.setHorizontalAlignment(JLabel.CENTER);
+		loading.setFont(main_font);
+		loading.setBounds(170, 100, 200, 50);
+		
+		loadingbar = new JProgressBar(JProgressBar.HORIZONTAL, 0, 100);
+		
+		panel.add(loading, BorderLayout.NORTH);
+		panel.add(loadingbar, BorderLayout.CENTER);
+		
 		l_map = new JLabel("");
-		l_map.setBounds(0, 0, 100, 50);
-		l_map.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 20));
 		map.add(l_map);
-
+		map.add(panel);
 		add(map);
 
 	}

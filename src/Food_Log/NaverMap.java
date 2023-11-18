@@ -21,14 +21,10 @@ import org.json.JSONTokener;
 
 public class NaverMap implements ActionListener {
 
-		Review review;
-		public NaverMap(Review naverMap) {
-			this.review = naverMap;
-		}
-//	Review_map review;
-//	public NaverMap(Review_map naverMap) {
-//		this.review = naverMap;
-//	}
+	Review review;
+	public NaverMap(Review naverMap) {
+		this.review = naverMap;
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
