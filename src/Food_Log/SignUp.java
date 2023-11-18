@@ -37,8 +37,6 @@ public class SignUp extends JFrame {
 
 	private ImageIcon Back = new ImageIcon("./img/Icon_Back.png");
 
-	private Setting s = new Setting();
-
 	public static void main(String[] args) {
 		try {
 			new SignUp();
@@ -48,10 +46,11 @@ public class SignUp extends JFrame {
 	}
 
 	public SignUp() throws Exception {
-		s = new Setting();
+		new Create_Table_user_info();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(900,600);
+		setResizable(false);
 		setTitle("회원가입");
 		setLocationRelativeTo(null);
 
@@ -126,9 +125,13 @@ public class SignUp extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
+					PreparedStatement ps;
+					ResultSet rs;
 					String u_id = userId.getText();
-					String sql = "SHOW TABLES LIKE '" + u_id + "'";
-					ResultSet rs = s.stmt.executeQuery(sql);
+					String sql = "SELECT EXISTS (SELECT * FROM " + Create_Table_user_info.schema_name + "." + Create_Table_user_info.table_name	+ " WHERE user_id = ?)";
+					ps = Setting.conn.prepareStatement(sql);
+					ps.setString(1, u_id);
+					rs = ps.executeQuery();
 
 					if(rs.next()) {
 						int exists = rs.getInt(1);
@@ -229,7 +232,9 @@ public class SignUp extends JFrame {
 					if(checkId == true && checkPass == true) {
 						//삽입 쿼리문
 						String sql = "INSERT INTO user_info(user_name, user_id, user_pw) values('" + u_name + "','" + u_id + "','" + u_pw + "')";
-						s.stmt.execute(sql);
+						Setting.stmt.execute(sql);
+						new Update_user_info(u_id);
+						new Create_Table_food_list();
 						JOptionPane.showMessageDialog(null, "회원가입 성공", "회원가입 확인", JOptionPane.INFORMATION_MESSAGE);
 						new Login();
 						setVisible(false);
