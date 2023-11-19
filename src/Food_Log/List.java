@@ -139,7 +139,7 @@ public class List extends JFrame{
 	}
 
 	// 맛집 정보
-	public void create_food_info() {
+	public static void create_food_info() {
 		try {
 			List_data l = new List_data();
 			String sql = "SELECT * FROM food_log.`" + l.user_id + "` WHERE food_no = " + data_idx;
@@ -153,7 +153,7 @@ public class List extends JFrame{
 				String food_write = l.getFoodWrite();
 
 				JFrame f_page = new JFrame();
-				JLabel f_name, f_star, f_address;
+				JLabel f_name, f_star, f_address, f_time;
 				JTextArea f_hash, f_write;
 				f_page.setSize(500, 450);
 				f_page.setResizable(false);
@@ -189,11 +189,16 @@ public class List extends JFrame{
 				f_write.setEditable(false);
 				f_write.setLineWrap(true);
 				f_write.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 20));
+				
+				f_time = new JLabel("작성 날짜: " + food_time);
+				f_time.setBounds(340, 360, 200, 70);
+				f_time.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 13));
 
 				f_page.setVisible(true);
 
 				f_page.add(f_name);
 				f_page.add(f_star);
+				f_page.add(f_time);
 				f_page.add(f_hash);
 				f_page.add(f_address);
 				f_page.add(f_write);
@@ -241,8 +246,12 @@ public class List extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				try {
 					List_data l = new List_data();
-					String sql = "DELETE FROM food_log." + l.user_id + " WHERE food_no = " + data_idx;
+					String sql, re;
+					sql = "DELETE FROM food_log." + l.user_id + " WHERE food_no = " + data_idx;
+					// 리스트 삭제시 삭제된 맛집 food_no 재정렬
+					re = "UPDATE food_log." + l.user_id + " SET food_no = food_no - 1 WHERE food_no > " + data_idx;
 					l.deleteData(sql);
+					s.stmt.execute(re);
 					data.clear();
 					JOptionPane.showMessageDialog(null, "삭제되었습니다.", "알림", JOptionPane.INFORMATION_MESSAGE);
 					new List();
