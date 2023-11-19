@@ -5,14 +5,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
-import com.mysql.cj.x.protobuf.MysqlxCrud.DataModel;
 
 public class HashTag extends JFrame {
 	private static JPanel panel;
@@ -28,8 +27,10 @@ public class HashTag extends JFrame {
 	private static DefaultListModel<String> listModel;
 	private static JScrollPane scrollPane;
 	private static JButton btnInfo;
-	private static int data_idx = 0;
+	private static Vector<Integer> data_no = new Vector<>();
+	private static int data_idx = -1;
 	private static String hashText = "";
+	private static List_data l;
 
 	// 해시태그 검색하기
 	HashTag() {
@@ -102,12 +103,13 @@ public class HashTag extends JFrame {
 				// TODO Auto-generated method stub
 				try {
 					hashText = search.getText();
-					List_data l = new List_data();
+					l = new List_data();
 					String sql = "SELECT * FROM food_log." + l.user_id + " WHERE food_hash LIKE '%" + hashText + "%'";
 					new List_data(sql);
 					data.clear();
 					while(l.rs.next()) {
 						data.add(l.getFoodName() + "  |  " + l.getFoodHash());
+						data_no.add(l.getFoodNo());
 					}
 					updateList();
 				} catch (Exception e1) {
@@ -171,8 +173,7 @@ public class HashTag extends JFrame {
 	// 맛집 정보
 	public static void create_food_info() {
 		try {
-			List_data l = new List_data();
-			String sql = "SELECT * FROM food_log.`" + l.user_id + "` WHERE food_hash = '" + hashText + "'";
+			String sql = "SELECT * FROM food_log.`" + l.user_id + "` WHERE food_no = " + data_no.get(data_idx);
 			new List_data(sql);
 			if(l.rs.next()) {
 				String food_name = l.getFoodName();
@@ -183,7 +184,7 @@ public class HashTag extends JFrame {
 				String food_write = l.getFoodWrite();
 
 				JFrame f_page = new JFrame();
-				JLabel f_name, f_star, f_address;
+				JLabel f_name, f_star, f_address, f_time;
 				JTextArea f_hash, f_write;
 				f_page.setSize(500, 450);
 				f_page.setResizable(false);
@@ -220,10 +221,15 @@ public class HashTag extends JFrame {
 				f_write.setLineWrap(true);
 				f_write.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 20));
 
+				f_time = new JLabel("작성 날짜: " + food_time);
+				f_time.setBounds(340, 360, 200, 70);
+				f_time.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 13));
+
 				f_page.setVisible(true);
 
 				f_page.add(f_name);
 				f_page.add(f_star);
+				f_page.add(f_time);
 				f_page.add(f_hash);
 				f_page.add(f_address);
 				f_page.add(f_write);
@@ -254,7 +260,7 @@ public class HashTag extends JFrame {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				// TODO Auto-generated method stub
-				System.out.println(listModel.get(list.getSelectedIndex()));
+				data_idx = list.getSelectedIndex();
 			}
 		});
 	}
