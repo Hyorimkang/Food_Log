@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingWorker;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
@@ -49,10 +50,15 @@ public class Review extends JFrame {
 	public JPanel map;
 	private JLabel loading;
 	public static Font main_font = new Font("EF_watermelonSalad", Font.PLAIN, 30);
-	private JPanel panel;
+	public JPanel panel;
 	private JPanel bg;
 	public JProgressBar loadingbar;
 
+	Loading l;
+	public Review(Loading l) {
+		this.l = l;
+	}
+	
 	Review() {
 		try {
 			setTitle("리뷰 작성하기");
@@ -145,9 +151,10 @@ public class Review extends JFrame {
 		btn_address.setBackground(Color.white);
 		btn_address.setFocusPainted(false);
 		btn_address.addActionListener(new Loading(this));
-		btn_address.addActionListener(new NaverMap(this));
-
-
+		//btn_address.addActionListener(new NaverMap(this));
+		
+		
+		
 		//태그
 		tag = new JLabel("태그");
 		tag.setBounds(30, 230, 100, 50);
