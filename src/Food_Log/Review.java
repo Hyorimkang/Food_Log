@@ -150,10 +150,7 @@ public class Review extends JFrame {
 		btn_address.setFont(new Font("EF_watermelonSalad", Font.PLAIN, 20));
 		btn_address.setBackground(Color.white);
 		btn_address.setFocusPainted(false);
-		btn_address.addActionListener(new Loading(this));
-		//btn_address.addActionListener(new NaverMap(this));
-		
-		
+		btn_address.addActionListener(new Loading(this));		
 		
 		//태그
 		tag = new JLabel("태그");
