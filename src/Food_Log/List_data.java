@@ -57,10 +57,8 @@ public class List_data {
 		try {
 			Setting s = new Setting();
 			s.stmt.execute(sql);
-			System.out.println("성공");
 		} catch(Exception e) {
 			e.printStackTrace();
-			System.out.println("실패");
 		}
 	}
 	public static int getFoodNo() throws Exception {

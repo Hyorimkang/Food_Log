@@ -15,8 +15,6 @@ public class Create_Table_user_info extends Create_Schema {
 					+ "`user_name` VARCHAR(20) NOT NULL, \r\n"
 					+ "`user_id` VARCHAR(20) NOT NULL, \r\n"
 					+ "`user_pw` VARCHAR(45) NOT NULL);");
-
-			System.out.println("user_info 테이블 생성");
 		}
 	}
 }
