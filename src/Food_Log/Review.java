@@ -212,7 +212,6 @@ public class Review extends JFrame {
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(null, "리뷰 작성 실패", "메세지", JOptionPane.ERROR_MESSAGE);
-					System.out.println("리뷰 작성 실패 : " + e1.toString());
 					e1.printStackTrace();
 				}
 			}

@@ -29,8 +29,6 @@ public class Create_Table_food_list extends Create_Schema {
 					+ "`food_hash` VARCHAR(50) NOT NULL, \r\n"
 					+ "`food_write` VARCHAR(1000) NOT NULL);"); 
 			// 유저 아이디, 식당 이름, 주소, 방문한 날짜, 별점, 해시태그, 후기
-
-			System.out.println("food_list 테이블 생성");
 		}
 	}
 }

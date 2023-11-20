@@ -14,7 +14,6 @@ public class Create_Schema extends Setting {
 		if (!schema_exists) { // 스키마가 존재하지 않으면 스키마 생성
 			stmt.execute("CREATE SCHEMA `" + schema_name + "` DEFAULT CHARACTER SET utf8;");
 			stmt.execute("SET GLOBAL local_infile = 1");
-			System.out.println("스키마 생성");
 		}
 
 		db_name = schema_name;

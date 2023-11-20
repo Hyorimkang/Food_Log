@@ -67,7 +67,6 @@ public class NaverMap implements ActionListener {
 		
 				JSONTokener tokener = new JSONTokener(response.toString());
 				JSONObject object = new JSONObject(tokener);
-				System.out.println(object);
 		
 				JSONArray arr = object.getJSONArray("addresses");
 				for (int i = 0; i < arr.length(); i++) {
@@ -77,7 +76,6 @@ public class NaverMap implements ActionListener {
 					vo.setJibunAddress((String)temp.get("jibunAddress"));
 					vo.setX((String)temp.get("x"));
 					vo.setY((String)temp.get("y"));
-					System.out.println(vo);
 				}
 		
 				map_service(vo);
@@ -130,8 +128,6 @@ public class NaverMap implements ActionListener {
 				ImageIcon img = new ImageIcon(file.getName());
 				review.l_map.setIcon(img);
 
-			} else {
-				System.out.println(responseCode);
 			}
 
 		} catch(Exception e) {

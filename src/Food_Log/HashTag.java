@@ -107,6 +107,7 @@ public class HashTag extends JFrame {
 					String sql = "SELECT * FROM food_log." + l.user_id + " WHERE food_hash LIKE '%" + hashText + "%'";
 					new List_data(sql);
 					data.clear();
+					data_no.clear();
 					while(l.rs.next()) {
 						data.add(l.getFoodName() + "  |  " + l.getFoodHash());
 						data_no.add(l.getFoodNo());
@@ -238,10 +239,8 @@ public class HashTag extends JFrame {
 				l.br.close();
 			} else {
 				JOptionPane.showMessageDialog(null, "해당 맛집 정보를 불러올 수 없습니다.", "error", JOptionPane.ERROR_MESSAGE);
-				System.out.println("해당 맛집 정보를 찾을 수 없습니다.");
 			}
 		}catch(Exception e) {
-			System.out.println("페이지 호출 실패: " + e.toString());
 			e.printStackTrace();
 		}
 	}
@@ -278,9 +277,7 @@ public class HashTag extends JFrame {
 			while(l.rs.next()) {
 				data.add(l.getFoodName() + "  |  " + l.getFoodHash());
 				listModel.add(l.getFoodNo(), l.getFoodName());
-				System.out.println(listModel.get(l.getFoodNo()));
 			}
-			System.out.println("DB 호출 성공");
 		}catch(Exception e) {
 
 		}
