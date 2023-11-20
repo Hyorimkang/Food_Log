@@ -64,7 +64,7 @@ public class HashTag extends JFrame {
 		title.setOpaque(true); //투명하게
 
 		//검색창
-		String searchText = "태그를 입력하세요 ('#' 없이 입력)";
+		String searchText = "검색할 태그를 입력하세요\t";  // \t로 검색바 크기 조정
 		p_search = new JPanel();
 		p_search.setBounds(175, 115, 550, 40);
 		p_search.setBackground(Color.WHITE);
